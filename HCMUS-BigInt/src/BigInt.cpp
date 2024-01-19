@@ -7,7 +7,7 @@
 
 #include "BigInt.hpp"
 
-// Hàm từ số nguyên sang dạng biểu diễn BigInt
+// Hàm từ chuỗi sang dạng biểu diễn BigInt
 std::vector<int> BigInt::from_string(const std::string& inputString) {
     
     std::vector<int> result;
@@ -52,7 +52,7 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
 // Constructor
 BigInt::BigInt(const std::string& inputString) {
         if (inputString.empty()) {
-            // Xử lý lỗi hoặc đặt mặc định 0 ở đây nếu cần
+            // Xử lý lỗi hoặc đặt mặc định 0
             sign = 0;
             return;
         }
