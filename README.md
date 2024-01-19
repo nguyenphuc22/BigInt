@@ -1,6 +1,8 @@
 # HCMUS - BigInt
 
-## **Mục Tiêu:** Đề án này nhằm mục đích cung cấp cho các thành viên trong nhóm cơ hội trải nghiệm việc triển khai các thuật toán số học sử dụng cấu trúc số nguyên lớn (bigint).
+## **Mục Tiêu:** 
+
+Đề án này nhằm mục đích cung cấp cho các thành viên trong nhóm cơ hội trải nghiệm việc triển khai các thuật toán số học sử dụng cấu trúc số nguyên lớn (bigint).
 
 ### **Phần 1: Triển khai BigInt và Các Phép Toán Cơ Bản**  
 - Mô tả và triển khai cấu trúc số nguyên lớn bigint.
