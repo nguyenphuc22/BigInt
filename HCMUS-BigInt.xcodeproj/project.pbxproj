@@ -62,11 +62,35 @@
 		027876662B5ABC1400B2D613 /* HCMUS-BigInt */ = {
 			isa = PBXGroup;
 			children = (
-				027876672B5ABC1400B2D613 /* main.cpp */,
-				0278766F2B5ABC6500B2D613 /* BigInt.cpp */,
-				027876702B5ABC6500B2D613 /* BigInt.hpp */,
+				027876742B5AC80900B2D613 /* tests */,
+				027876732B5AC7F800B2D613 /* include */,
+				027876722B5AC7EC00B2D613 /* src */,
 			);
 			path = "HCMUS-BigInt";
+			sourceTree = "<group>";
+		};
+		027876722B5AC7EC00B2D613 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0278766F2B5ABC6500B2D613 /* BigInt.cpp */,
+				027876672B5ABC1400B2D613 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		027876732B5AC7F800B2D613 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				027876702B5ABC6500B2D613 /* BigInt.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		027876742B5AC80900B2D613 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
