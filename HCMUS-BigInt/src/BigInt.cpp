@@ -8,23 +8,64 @@
 #include "BigInt.hpp"
 
 // Hàm từ số nguyên sang dạng biểu diễn BigInt
-std::vector<int> BigInt::from_integer(long long value) {
+std::vector<int> BigInt::from_string(const std::string& inputString) {
+    
     std::vector<int> result;
-    while (value) {
-        result.push_back(value % base);
-        value /= base;
+
+    if (inputString.empty()) {
+        result.push_back(0);
+        return result;
     }
+
+
+    int startIndex = (inputString[0] == '-') ? 1 : 0;
+
+    int block = 0;
+    int multiplier = 1;
+    for (long i = inputString.length() - 1; i >= startIndex; i--) {
+        char digit = inputString[i];
+        if (isdigit(digit)) {
+            block += (digit - '0') * multiplier;
+            multiplier *= 10;
+            if (multiplier >= base) {
+                result.push_back(block);
+                block = 0;
+                multiplier = 1;
+            }
+        } else {
+            throw std::invalid_argument("Invalid character in input string.");
+        }
+    }
+
+    if (block > 0) {
+        result.push_back(block);
+    }
+
     if (result.empty()) {
         result.push_back(0);
     }
+
     return result;
 }
 
+
 // Constructor
-BigInt::BigInt(long long value) {
-    sign = (value >= 0) ? 1 : -1;
-    blocks = from_integer(std::abs(value));
-}
+BigInt::BigInt(const std::string& inputString) {
+        if (inputString.empty()) {
+            // Xử lý lỗi hoặc đặt mặc định 0 ở đây nếu cần
+            sign = 0;
+            return;
+        }
+
+        // Xác định dấu dựa trên ký tự đầu tiên của chuỗi
+        if (inputString[0] == '-') {
+            sign = -1;
+        } else {
+            sign = 1;
+        }
+
+        // Chuyển đổi chuỗi thành khối số nguyên (blocks)
+        blocks = from_string(inputString);}
 
 // Toán tử cộng
 BigInt BigInt::operator+(const BigInt& other) const {
@@ -65,6 +106,9 @@ BigInt BigInt::pow(const BigInt& exponent, const BigInt& modulus) const {
 // Ghi dữ liệu ra ostream
 std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
     os << "BigInt: ";
+    if (bigint.sign == -1) {
+        os << "-";
+    }
     for (long i = bigint.blocks.size() - 1; i >= 0; i--) {
         os << bigint.blocks[i];
         if (i > 0) {

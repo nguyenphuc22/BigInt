@@ -11,17 +11,19 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
 
 class BigInt {
 private:
-    int base = 1000000;
-    int sign = 1;  // Positive by default
+
+    int base = 1000000; // Quy ước chia chuỗi string thành các block, mỗi block 6 chữ số.
+    int sign = 1;  // Số dương lớn hơn 1, Số âm bé hơn 1, Số 0 = 0
     std::vector<int> blocks;
 
-    std::vector<int> from_integer(long long value);
+    std::vector<int> from_string(const std::string& inputString = "0");
 
 public:
-    BigInt(long long value = 0);
+    BigInt(const std::string& inputString = "0");
 
     BigInt operator+(const BigInt& other) const;
     BigInt operator-(const BigInt& other) const;

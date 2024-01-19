@@ -8,15 +8,19 @@
 #include <iostream>
 #include <vector>
 #include "BigInt.hpp"
+#include <string>
 
 
 
 int main() {
     // Testing the BigInt class
-    BigInt a = 123456789;
-    BigInt b = 987654321;
+    std::string numberA = "-1234567899999999999999999999999999999999999999";
+    std::string numberB = "987654321";
+    BigInt a = numberA;
+    BigInt b = numberB;
     
     std::cout << a << std::endl;
+    std::cout << b << std::endl;
     
     return 0;
 }
