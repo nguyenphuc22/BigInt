@@ -13,3 +13,9 @@
 ### **Phần 2: Thuật Toán Nhân Hai Số Nguyên với Độ Phức Tạp Thấp**  
 - Trình bày và giải thích các thuật toán như Karatsuba và Schönhage-Strassen.
 - Đánh giá nguyên lý giúp giảm độ phức tạp của các thuật toán này so với phương pháp truyền thống.
+
+## **Hướng dẫn build source for vscode**
+- cd /build
+- cmake CMakeLists.txt
+- make
+- ./HCMUS-BigInt
