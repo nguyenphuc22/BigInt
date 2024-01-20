@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <vector>
-#include "BigInt.hpp"
+#include "../include/BigInt.hpp"
 #include <string>
 
 

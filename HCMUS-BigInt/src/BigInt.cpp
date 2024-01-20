@@ -5,7 +5,7 @@
 //  Created by Phuc Nguyen on 19/01/2024.
 //
 
-#include "BigInt.hpp"
+#include "../include/BigInt.hpp"
 
 // Hàm từ chuỗi sang dạng biểu diễn BigInt
 std::vector<int> BigInt::from_string(const std::string& inputString) {
