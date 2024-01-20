@@ -51,6 +51,8 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
 
 // Constructor
 BigInt::BigInt(const std::string& inputString) {
+        base = 1000000;  // 10^6
+        
         if (inputString.empty()) {
             // Xử lý lỗi hoặc đặt mặc định 0
             sign = 0;

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "../include/BigInt.hpp"
+#include "BigInt.cpp"
 #include <string>
 
 

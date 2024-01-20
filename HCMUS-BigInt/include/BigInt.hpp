@@ -16,8 +16,8 @@
 class BigInt {
 private:
 
-    int base = 1000000; // Quy ước chia chuỗi string thành các block, mỗi block 6 chữ số.
-    int sign = 1;  // Số dương lớn hơn 1, Số âm bé hơn 1, Số 0 = 0
+    int base; // Quy ước chia chuỗi string thành các block, mỗi block 6 chữ số. Default = 1000000
+    int sign;  // Số dương lớn hơn 1, Số âm bé hơn 1, Số 0 = 0. Default = 0
     std::vector<int> blocks;
 
     std::vector<int> from_string(const std::string& inputString = "0");
