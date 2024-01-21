@@ -6,7 +6,7 @@ env:
   TEST_STATUS: 1
 
 jobs:
-  build:
+  testAddFunction:
 
     runs-on: ubuntu-latest
 
@@ -23,42 +23,45 @@ jobs:
     - name: Run Add Test Case
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt || echo "Add Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
-  
-    - name: Run Sub Test Case
-      run: |
-        cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt || echo "Sub Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
-
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt 
+    
     - name: Run Mul Test Case
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mul.txt || echo "Mul Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mul.txt 
 
     - name: Run Div Test Case
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/div.txt || echo "Div Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/div.txt 
 
     - name: Run Mod Test Case
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mod.txt || echo "Mod Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mod.txt 
 
     - name: Run Pow Test Case
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/pow.txt || echo "Pow Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/pow.txt 
 
-    - name: Check Test Status
+  testSubFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+    - name: build
       run: |
-        if [ $TEST_STATUS -eq 1 ]; then
-          echo "One or more test cases failed"
-          exit 1
-        fi
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Sub Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt 
+    
+      
