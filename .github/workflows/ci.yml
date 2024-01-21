@@ -3,7 +3,7 @@ name: C++ CI
 on: [push, pull_request]
 
 env:
-  TEST_STATUS: 0
+  TEST_STATUS: 1
 
 jobs:
   build:
