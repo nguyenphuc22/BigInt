@@ -31,7 +31,9 @@ public:
     BigInt operator/(const BigInt& other) const;
     BigInt operator%(const BigInt& other) const;
 
-    BigInt pow(const BigInt& exponent, const BigInt& modulus) const;
+    BigInt pow(const BigInt& power) const;
+
+    std::string to_string() const;
 
     friend std::ostream& operator<<(std::ostream& os, const BigInt& bigint);
     

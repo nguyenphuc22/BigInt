@@ -13,6 +13,7 @@
 
 
 
+
 int main() {
     // Testing the BigInt class
     std::string numberA = "-1234567899999999999999999999999999999999999999";
@@ -23,5 +24,7 @@ int main() {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     
+    std::cout << 10 % 3 << std::endl;
+
     return 0;
 }

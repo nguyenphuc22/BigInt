@@ -1,0 +1,127 @@
+name: C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  testAddFunction:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Add Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt 
+
+  testSubFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Sub Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt 
+
+  testMulFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Mul Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mul.txt 
+  
+  testDivFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+      
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Div Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/div.txt 
+
+  testModFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+      
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Mod Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mod.txt 
+  
+  testPowFunction:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+      
+    - name: build
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+
+    - name: Run Pow Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/pow.txt 
+
+        
+  
+    
+      
