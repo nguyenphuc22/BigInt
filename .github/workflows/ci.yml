@@ -20,6 +20,7 @@ jobs:
     - name: run
       run: | 
         ls
+        cd HCMUS-BigInt
         ./HCMUS-BigInt-Test CreateTestCaseBigInt/data/mod.txt > output.txt
     - name: check
       run: grep -q "Incorrect" output.txt && exit 1 || exit 0
