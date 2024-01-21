@@ -24,4 +24,10 @@
 - cd /build
 - cmake CMakeLists.txt
 - make
-- ./HCMUS-BigInt-Test
+Tuỳ vào đang dev chức nào thì chạy một trong các code dưới này
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt Cho test case add 
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt Cho test case sub
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/div.txt Cho test case div
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mod.txt Cho test case mod
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/mul.txt Cho test case mul
+- ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/pow.txt Cho test case pow
