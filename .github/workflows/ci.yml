@@ -11,17 +11,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: install dependencies
       run: sudo apt-get install -y g++
-    - name: build
+    - name: build and run
       run: |
         cd HCMUS-BigInt/build
         cmake CMakeLists.txt
         make
         ls
-        
-    - name: run
-      run: | 
-        ls
-        cd HCMUS-BigInt
         ./HCMUS-BigInt-Test CreateTestCaseBigInt/data/mod.txt > output.txt
     - name: check
       run: grep -q "Incorrect" output.txt && exit 1 || exit 0
