@@ -12,8 +12,14 @@ jobs:
     - name: install dependencies
       run: sudo apt-get install -y g++
     - name: build
-      run: g++ -o test testCase.cpp
+      run: |
+        cd HCMUS-BigInt/build
+        cmake CMakeLists.txt
+        make
+        
     - name: run
-      run: ./test CreateTestCaseBigInt/data/mod.txt > output.txt
+      run: | 
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test CreateTestCaseBigInt/data/mod.txt > output.txt
     - name: check
       run: grep -q "Incorrect" output.txt && exit 1 || exit 0
