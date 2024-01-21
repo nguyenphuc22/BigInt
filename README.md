@@ -19,3 +19,9 @@
 - cmake CMakeLists.txt
 - make
 - ./HCMUS-BigInt
+
+## **Hướng dẫn run test case source for vscode**
+- cd /build
+- cmake CMakeLists.txt
+- make
+- ./HCMUS-BigInt-Test
