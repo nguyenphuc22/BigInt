@@ -20,11 +20,11 @@ jobs:
         cmake CMakeLists.txt
         make
 
-        - name: Run Add Test Case
-        run: |
-          cd HCMUS-BigInt/build
-          ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt || echo "Add Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-        continue-on-error: true
+    - name: Run Add Test Case
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt || echo "Add Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
+      continue-on-error: true
   
     - name: Run Sub Test Case
       run: |
