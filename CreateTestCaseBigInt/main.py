@@ -1,5 +1,6 @@
 # This is a sample Python script.
 import os
+import shutil
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
@@ -83,8 +84,10 @@ def performOperation(operation, num1, num2):
 
 def createFileTestCaseBigInt(loop,operation):
     directory = "data"
+
     if not os.path.exists(directory):
         os.makedirs(directory)
+
     name = directory + "/" + getFileName(operation)
     for i in range(loop):
         numberA = randomBigInt(operation=operation)
@@ -96,6 +99,10 @@ def createFileTestCaseBigInt(loop,operation):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    directory = "data"
+    if os.path.exists(directory):
+        shutil.rmtree(directory)
+
     createFileTestCaseBigInt(100,Add)
     createFileTestCaseBigInt(100,Sub)
     createFileTestCaseBigInt(100,Mul)
