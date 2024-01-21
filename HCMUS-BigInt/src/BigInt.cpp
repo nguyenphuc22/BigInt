@@ -100,7 +100,7 @@ BigInt BigInt::operator%(const BigInt& other) const {
 }
 
 // Phương thức lũy thừa
-BigInt BigInt::pow(const BigInt& exponent, const BigInt& modulus) const {
+BigInt BigInt::pow(const BigInt& power) const {
     // Triển khai phương thức lũy thừa tại đây
     return BigInt();  // Kết quả tạm thời
 }
@@ -119,5 +119,19 @@ std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
     }
     return os;
 }
+
+// Phương thức chuyển đổi BigInt thành chuỗi
+std::string BigInt::to_string() const {
+    std::string result;
+    if (sign == -1) {
+        result += "-";
+    }
+    for (long i = blocks.size() - 1; i >= 0; i--) {
+        result += std::to_string(blocks[i]);
+    }
+    return result;
+}
+
+
 
 // Các phương thức trợ giúp khác có thể được thêm vào tại đây

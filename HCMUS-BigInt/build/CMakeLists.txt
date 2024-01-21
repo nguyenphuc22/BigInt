@@ -11,5 +11,10 @@ include_directories(include)
 # Tìm tất cả các file nguồn trong thư mục src và thêm chúng vào biến
 file(GLOB SOURCES "../src/*.cpp")
 
+file(GLOB TEST_SOURCES "../tests/*.cpp")
+
 # Tạo một target thực thi từ các file nguồn
 add_executable(HCMUS-BigInt ${SOURCES})
+
+# Tạo một target thực thi từ các file nguồn
+add_executable(HCMUS-BigInt-Test ${TEST_SOURCES})
