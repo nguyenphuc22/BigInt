@@ -61,28 +61,25 @@ def fast_power(base, power):
 
 def performOperation(operation, num1, num2):
     if operation == Add:
-        result = "{:.50f}".format(num1 + num2)
+        result = num1 + num2
     elif operation == Sub:
-        result = "{:.50f}".format(num1 - num2)
+        result = num1 - num2
     elif operation == Mul:
-        result = "{:.50f}".format(num1 * num2)
+        result = num1 * num2
     elif operation == Div:
-        result = "{:.50f}".format(num1 / num2)
+        result = num1 / num2
     elif operation == Mod:
-        result = "{:.50f}".format(num1 % num2)
+        result = num1 % num2
     elif operation == Pow:
         if num1 == 0 and num2 < 0:
             return 'inf'  # or raise an error
         else:
-            result = format(num1 ** num2)
+            result = num1 ** num2
     else:
         return "Unknown operation"
 
-    # Remove trailing zeros, but leave at least one zero after the decimal point if the number is a whole number
-    result = result.rstrip('0') if '.' not in result.rstrip('0') else result.rstrip('0') + '0'
-
-    # Remove trailing .0 for integers
-    return result[:-2] if result.endswith('.0') else result
+    # Convert the result to int before returning
+    return int(result)
 
 def createFileTestCaseBigInt(loop,operation):
     directory = "data"

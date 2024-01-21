@@ -55,11 +55,12 @@ std::string getSymbol(int op) {
 
 int main(int argc, char* argv[]) {
     // Get path from parameter
+    // Path Example ../../CreateTestCaseBigInt/data/add.txt
     std::string path = argv[1];
     std::cout << "Path: " << path << std::endl;
 
     // Read input from file CreateTestCaseBigInt/data/add.txt
-    std::ifstream inputFile("../../CreateTestCaseBigInt/data/add.txt");
+    std::ifstream inputFile(path);
     if (!inputFile) {
         std::cerr << "Unable to open file";
         return 1; // return with error code 1
