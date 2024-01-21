@@ -7,14 +7,25 @@ env:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-    - name: Run Add Test Case
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+    - name: build
       run: |
         cd HCMUS-BigInt/build
-        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt || echo "Add Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
-      continue-on-error: true
+        cmake CMakeLists.txt
+        make
 
+        - name: Run Add Test Case
+        run: |
+          cd HCMUS-BigInt/build
+          ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/add.txt || echo "Add Test Case failed" >> $GITHUB_ENV && echo "TEST_STATUS=1" >> $GITHUB_ENV
+        continue-on-error: true
+  
     - name: Run Sub Test Case
       run: |
         cd HCMUS-BigInt/build
