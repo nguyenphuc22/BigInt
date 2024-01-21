@@ -16,6 +16,7 @@ jobs:
         cd HCMUS-BigInt/build
         cmake CMakeLists.txt
         make
+        ls
         
     - name: run
       run: | 
