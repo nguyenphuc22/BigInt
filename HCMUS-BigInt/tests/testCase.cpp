@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
         } else {
             std::cout << "Incorrect" << std::endl;
             inputFile.close();
-            exit(1);
+            return 1;
         }
                
     }
