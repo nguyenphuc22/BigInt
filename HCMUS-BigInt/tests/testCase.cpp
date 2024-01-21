@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
     // Get path from parameter
     // Path Example ../../CreateTestCaseBigInt/data/add.txt
     std::string path = argv[1];
-    std::cout << "Path: " << path << std::endl;
+    std::cerr << "Path: " << path << std::endl;
 
     // Read input from file CreateTestCaseBigInt/data/add.txt
     std::ifstream inputFile(path);
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     
     while (std::getline(inputFile, line)) {
         // process the line
-        std::cout << line << std::endl;
+        std::cerr << line << std::endl;
 
         std::string delimiter = ",";
         std::istringstream iss(line);
@@ -104,17 +104,17 @@ int main(int argc, char* argv[]) {
 
         }
 
-        std::cout << "stt: " << stt << std::endl;
-        std::cout << a.to_string() << " " << getSymbol(op) << " " << b.to_string() << std::endl;
-        std::cout << "Result: " << result.to_string() << std::endl; 
+        std::cerr << "stt: " << stt << std::endl;
+        std::cerr << a.to_string() << " " << getSymbol(op) << " " << b.to_string() << std::endl;
+        std::cerr << "Result: " << result.to_string() << std::endl; 
         std::string yourRes = cal(a,b,op);
-        std::cout << "Your Result: " << yourRes << std::endl; 
+        std::cerr << "Your Result: " << yourRes << std::endl; 
 
         if (yourRes == result.to_string())
         {
-            std::cout << "Correct" << std::endl;
+            std::cerr << "Correct" << std::endl;
         } else {
-            std::cout << "Incorrect" << std::endl;
+            std::cerr << "Incorrect" << std::endl;
             inputFile.close();
             return 1;
         }
