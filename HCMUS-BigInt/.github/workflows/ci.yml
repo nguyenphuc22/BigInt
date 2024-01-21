@@ -1,0 +1,19 @@
+name: C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: sudo apt-get install -y g++
+    - name: build
+      run: g++ -o test testCase.cpp
+    - name: run
+      run: ./test ../../CreateTestCaseBigInt/data/mod.txt > output.txt
+    - name: check
+      run: grep -q "Incorrect" output.txt && exit 1 || exit 0
