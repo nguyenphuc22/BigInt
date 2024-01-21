@@ -14,6 +14,6 @@ jobs:
     - name: build
       run: g++ -o test testCase.cpp
     - name: run
-      run: ./test ../../CreateTestCaseBigInt/data/mod.txt > output.txt
+      run: ./test CreateTestCaseBigInt/data/mod.txt > output.txt
     - name: check
       run: grep -q "Incorrect" output.txt && exit 1 || exit 0
