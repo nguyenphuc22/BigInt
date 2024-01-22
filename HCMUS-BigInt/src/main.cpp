@@ -16,15 +16,16 @@
 
 int main() {
     // Testing the BigInt class
-    std::string numberA = "-1234567899999999999999999999999999999999999999";
-    std::string numberB = "987654321";
+    std::string numberA = "-123456000000000000";
+    std::string numberB = "987654000000";
     BigInt a = numberA;
     BigInt b = numberB;
     
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     
-    std::cout << 10 % 3 << std::endl;
+    // std::cout << 10 % 3 << std::endl;
+    std::cout << b << std::endl;
 
     return 0;
 }
