@@ -71,40 +71,43 @@ BigInt::BigInt(const std::string& inputString) {
     blocks = from_string(inputString);}
 
 // Toán tử cộng
-BigInt BigInt::operator+(const BigInt& other) const {
-    // Kiểm tra trường hợp số 0
-    if (this->sign == 0) return other;
-    if (other.sign == 0) return *this;
 
-    // Xử lý trường hợp dấu khác nhau
-    // if (this->sign != other.sign) {
-    //     // Cần phải triển khai phép trừ
-    //     // return *this - (-other);
-    // }
+BigInt BigInt::operator+(const BigInt& other) const {
+    //Kiểm tra xem có phải cả hai số đều là số không
+    if (this->blocks.empty() || (other.blocks.empty())) {
+        return BigInt("0");
+    }
+
+    // Nếu một trong hai số là âm, xử lý trường hợp này riêng
+    if (this->sign != other.sign) {
+        // Xử lý cộng số âm và số dương
+        // ...
+        // Trả về kết quả sau khi xử lý
+    }
 
     BigInt result;
-    result.sign = this->sign; // Dấu của kết quả sẽ giống dấu của số hạng đầu tiên
-
-    int carry = 0; // Biến nhớ khi cộng
+    int carry = 0;  // Biến nhớ khi cộng
     size_t n = std::max(this->blocks.size(), other.blocks.size());
+    result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
 
-    for (size_t i = 0; i < n  || carry; ++i) {
+    for (size_t i = 0; i < n; ++i) {
         int sum = carry;
         if (i < this->blocks.size()) sum += this->blocks[i];
         if (i < other.blocks.size()) sum += other.blocks[i];
 
-        result.blocks.push_back(sum % base); // Lưu giá trị sau khi chia cho base
-        carry = sum / base; // Nhớ
+        carry = sum / base;  // Tính carry
+        sum %= base;         // Giữ lại phần dưới của block
+
+        result.blocks[i] = sum;
     }
 
-    // Loại bỏ các block dư thừa ở cuối (nếu có)
+    if (carry > 0) {
+        result.blocks.push_back(carry);
+    }
+
+    // Xóa các blocks dư thừa ở cuối
     while (!result.blocks.empty() && result.blocks.back() == 0) {
         result.blocks.pop_back();
-    }
-
-    // Trường hợp kết quả là 0
-    if (result.blocks.empty()) {
-        result.sign = 0;
     }
 
     return result;
