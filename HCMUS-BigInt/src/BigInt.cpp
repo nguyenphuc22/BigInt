@@ -6,6 +6,7 @@
 //
 
 #include "../include/BigInt.hpp"
+#include <iomanip>
 
 // Hàm từ chuỗi sang dạng biểu diễn BigInt
 std::vector<int> BigInt::from_string(const std::string& inputString) {
@@ -71,8 +72,42 @@ BigInt::BigInt(const std::string& inputString) {
 
 // Toán tử cộng
 BigInt BigInt::operator+(const BigInt& other) const {
-    // Triển khai phép cộng tại đây
-    return BigInt();  // Kết quả tạm thời
+    // Kiểm tra trường hợp số 0
+    if (this->sign == 0) return other;
+    if (other.sign == 0) return *this;
+
+    // Xử lý trường hợp dấu khác nhau
+    // if (this->sign != other.sign) {
+    //     // Cần phải triển khai phép trừ
+    //     // return *this - (-other);
+    // }
+
+    BigInt result;
+    result.sign = this->sign; // Dấu của kết quả sẽ giống dấu của số hạng đầu tiên
+
+    int carry = 0; // Biến nhớ khi cộng
+    size_t n = std::max(this->blocks.size(), other.blocks.size());
+
+    for (size_t i = 0; i < n  || carry; ++i) {
+        int sum = carry;
+        if (i < this->blocks.size()) sum += this->blocks[i];
+        if (i < other.blocks.size()) sum += other.blocks[i];
+
+        result.blocks.push_back(sum % base); // Lưu giá trị sau khi chia cho base
+        carry = sum / base; // Nhớ
+    }
+
+    // Loại bỏ các block dư thừa ở cuối (nếu có)
+    while (!result.blocks.empty() && result.blocks.back() == 0) {
+        result.blocks.pop_back();
+    }
+
+    // Trường hợp kết quả là 0
+    if (result.blocks.empty()) {
+        result.sign = 0;
+    }
+
+    return result;
 }
 
 // Toán tử trừ
@@ -144,16 +179,25 @@ BigInt BigInt::pow(const BigInt& power) const {
 
 // Ghi dữ liệu ra ostream
 std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
+    
+    if (bigint.blocks.empty() || (bigint.blocks.size() == 1 && bigint.blocks[0] == 0)) {
+        os << "BigInt: 0";
+        return os;
+    }
+
     os << "BigInt: ";
     if (bigint.sign == -1) {
         os << "-";
     }
-    for (long i = bigint.blocks.size() - 1; i >= 0; i--) {
-        os << bigint.blocks[i];
-        if (i > 0) {
-            os << " ";
-        }
+
+    // Block đầu tiên
+    os << bigint.blocks.back();
+
+    // Các block tiếp theo
+    for (long i = bigint.blocks.size() - 2; i >= 0; i--) {
+        os << " " << std::setw(6) << std::setfill('0') << bigint.blocks[i];
     }
+
     return os;
 }
 
