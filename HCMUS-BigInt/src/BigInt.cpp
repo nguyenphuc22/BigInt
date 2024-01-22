@@ -86,6 +86,7 @@ BigInt BigInt::operator+(const BigInt& other) const {
     }
 
     BigInt result;
+    result.sign = this->sign;
     int carry = 0;  // Biến nhớ khi cộng
     size_t n = std::max(this->blocks.size(), other.blocks.size());
     result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
