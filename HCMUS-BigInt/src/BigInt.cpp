@@ -51,23 +51,23 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
 
 // Constructor
 BigInt::BigInt(const std::string& inputString) {
-        base = 1000000;  // 10^6
-        
-        if (inputString.empty()) {
-            // Xử lý lỗi hoặc đặt mặc định 0
-            sign = 0;
-            return;
-        }
+    base = 1000000;  // 10^6
+    
+    if (inputString.empty()) {
+        // Xử lý lỗi hoặc đặt mặc định 0
+        sign = 0;
+        return;
+    }
 
-        // Xác định dấu dựa trên ký tự đầu tiên của chuỗi
-        if (inputString[0] == '-') {
-            sign = -1;
-        } else {
-            sign = 1;
-        }
+    // Xác định dấu dựa trên ký tự đầu tiên của chuỗi
+    if (inputString[0] == '-') {
+        sign = -1;
+    } else {
+        sign = 1;
+    }
 
-        // Chuyển đổi chuỗi thành khối số nguyên (blocks)
-        blocks = from_string(inputString);}
+    // Chuyển đổi chuỗi thành khối số nguyên (blocks)
+    blocks = from_string(inputString);}
 
 // Toán tử cộng
 BigInt BigInt::operator+(const BigInt& other) const {
