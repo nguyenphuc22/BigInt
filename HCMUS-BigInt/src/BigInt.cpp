@@ -87,10 +87,47 @@ BigInt BigInt::operator*(const BigInt& other) const {
     return BigInt();  // Kết quả tạm thời
 }
 
-// Toán tử chia
+
 BigInt BigInt::operator/(const BigInt& other) const {
-    // Triển khai phép chia tại đây
     return BigInt();  // Kết quả tạm thời
+}
+
+bool BigInt::operator==(const BigInt& other) const {
+    return sign == other.sign && blocks == other.blocks;
+}
+
+bool BigInt::operator!=(const BigInt& other) const {
+    return !(*this == other);
+}
+
+bool BigInt::operator<(const BigInt& other) const {
+    if (sign != other.sign) {
+        return sign < other.sign;
+    }
+
+    if (blocks.size() != other.blocks.size()) {
+        return (sign == 1) ? blocks.size() < other.blocks.size() : blocks.size() > other.blocks.size();
+    }
+
+    for (long i = blocks.size() - 1; i >= 0; i--) {
+        if (blocks[i] != other.blocks[i]) {
+            return (sign == 1) ? blocks[i] < other.blocks[i] : blocks[i] > other.blocks[i];
+        }
+    }
+
+    return false; // Các số bằng nhau
+}
+
+bool BigInt::operator>(const BigInt& other) const {
+    return other < *this;
+}
+
+bool BigInt::operator<=(const BigInt& other) const {
+    return !(*this > other);
+}
+
+bool BigInt::operator>=(const BigInt& other) const {
+    return !(*this < other);
 }
 
 // Toán tử chia lấy dư

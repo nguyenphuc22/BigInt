@@ -120,6 +120,37 @@ jobs:
       run: |
         cd HCMUS-BigInt/build
         ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/pow.txt 
+    
+    - name: Run Compare Test Case Equal
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/equal.txt
+
+    - name: Run Compare Test Case Larger
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/larger.txt
+    
+    - name: Run Compare Test Case Smaller
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/smaller.txt
+
+    - name: Run Compare Test Case Larger or Equal
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/largerThanEqual.txt
+
+    - name: Run Compare Test Case Smaller or Equal
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/lessThanEqual.txt
+
+    - name: Run Compare Test Case Not Equal
+      run: |
+        cd HCMUS-BigInt/build
+        ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/other.txt
+
 
         
   
