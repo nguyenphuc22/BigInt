@@ -30,6 +30,10 @@ def print_hi(name):
 # Đây là hàm tạo số nguyên lớn, có thể là âm hoặc dương
 import random
 
+def generate_bigint(length):
+    return int(''.join([str(random.randint(0, 9)) for _ in range(length)]))
+
+
 def randomBigInt(operation, range=10**64):
     if operation == Pow:
         return random.randint(2, 10**3)  # Adjust this range as needed for Pow operation
@@ -120,8 +124,26 @@ def createFileTestCaseBigInt(loop,operation):
         os.makedirs(directory)
     name = directory + "/" + getFileName(operation)
     for i in range(loop):
-        numberA = randomBigInt(operation=operation)
-        numberB = randomBigInt(operation=operation)
+        special = random.randint(0, 4)
+        if special == 0 and operation != Div and operation != Mod and operation != Pow:
+            numberA = randomBigInt(operation=operation)
+            numberB = 0
+        elif special == 1 and operation != Div and operation != Mod and operation != Pow:
+            numberA = 0
+            numberB = randomBigInt(operation=operation)
+        elif special == 2:
+            numberA = randomBigInt(operation=operation)
+            numberB = randomBigInt(operation=operation)
+        elif special == 3:
+            numberA = randomBigInt(operation=operation)
+            numberB = randomBigInt(operation=operation,range=10**32)
+        elif special == 4:
+            numberA = randomBigInt(operation=operation,range=10**32)
+            numberB = randomBigInt(operation=operation)
+        else:
+            numberA = randomBigInt(operation=operation)
+            numberB = randomBigInt(operation=operation)
+            
         # Export file txt with format: i,numberA,Add,numberB,numberA + numberB
         file = open(name, "a")
         print(str(i) + "," + str(numberA) + "," + str(operation) + "," + str(numberB) + "," + str(performOperation(operation,numberA,numberB)))
