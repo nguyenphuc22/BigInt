@@ -33,6 +33,26 @@ std::string cal(BigInt a, BigInt b, int op) {
     }
 }
 
+bool compare(BigInt a, BigInt b, int op) {
+    switch (op)
+    {
+    case 7:
+        return a < b;
+    case 8:
+        return a == b;
+    case 9:
+        return a > b;
+    case 10:
+        return a <= b;
+    case 11:
+        return a >= b;
+    case 12:
+        return a != b;
+    default:
+        return false;
+    }
+}
+
 std::string getSymbol(int op) {
     switch (op)
     {
@@ -48,6 +68,18 @@ std::string getSymbol(int op) {
         return "%";
     case 6:
         return "^";
+    case 7:
+        return "<";
+    case 8:
+        return "==";
+    case 9:
+        return ">";
+    case 10:
+        return "<=";
+    case 11:
+        return ">=";
+    case 12:
+        return "!=";
     default:
         return "0";
     }
@@ -78,6 +110,7 @@ int main(int argc, char* argv[]) {
         int stt = 0;
         int op = 0;
         BigInt a,b,result;
+        bool res;
         int count = 0;
         while (std::getline(iss, token, ',')) {
             count++;
@@ -96,7 +129,14 @@ int main(int argc, char* argv[]) {
                 b = BigInt(token);
                 break;
             case 5:
-                result = BigInt(token);
+                
+                if (op >= 7)
+                {
+                    res = (token == "True" ? true : false);
+                } else {
+                    result = BigInt(token);
+                }
+                
                 break;
             default:
                 break;
@@ -107,10 +147,22 @@ int main(int argc, char* argv[]) {
         std::cerr << "stt: " << stt << std::endl;
         std::cerr << a.to_string() << " " << getSymbol(op) << " " << b.to_string() << std::endl;
         std::cerr << "Result: " << result.to_string() << std::endl; 
-        std::string yourRes = cal(a,b,op);
+        std::string yourRes;
+        if(op >= 7) {
+            yourRes = (compare(a,b,op) ? "1" : "0");
+        } else {
+            yourRes = cal(a,b,op);
+        }
         std::cerr << "Your Result: " << yourRes << std::endl; 
 
-        if (yourRes == result.to_string())
+        bool isCorrect = false;
+        if(op >= 7 ) {
+            isCorrect = res == (yourRes == "1" ? true : false);
+        } else {
+            isCorrect= result.to_string() == yourRes;
+        }
+
+        if (isCorrect)
         {
             std::cerr << "Correct" << std::endl;
         } else {

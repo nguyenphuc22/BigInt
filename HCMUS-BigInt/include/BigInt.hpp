@@ -30,6 +30,12 @@ public:
     BigInt operator*(const BigInt& other) const;
     BigInt operator/(const BigInt& other) const;
     BigInt operator%(const BigInt& other) const;
+    bool operator==(const BigInt& other) const;
+    bool operator!=(const BigInt& other) const;
+    bool operator<(const BigInt& other) const;
+    bool operator>(const BigInt& other) const;
+    bool operator<=(const BigInt& other) const;
+    bool operator>=(const BigInt& other) const;
 
     BigInt pow(const BigInt& power) const;
 
