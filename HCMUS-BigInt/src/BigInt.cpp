@@ -89,45 +89,7 @@ BigInt BigInt::operator*(const BigInt& other) const {
 
 
 BigInt BigInt::operator/(const BigInt& other) const {
-    // Kiểm tra chia cho 0
-    if (other == BigInt("0")) {
-        throw std::invalid_argument("Division by zero is undefined.");
-    }
-
-    // Xác định dấu của kết quả
-    int resultSign = (this->sign == other.sign) ? 1 : -1;
-
-    // Xử lý trường hợp số bị chia là 0
-    if (*this == BigInt("0")) {
-        return BigInt("0");
-    }
-
-    // Khởi tạo kết quả
-    BigInt result;
-    result.sign = resultSign;
-    result.base = this->base;
-    BigInt remainder("0");
-    remainder.base = this->base;
-
-    // Chia từng khối
-    for (int i = this->blocks.size() - 1; i >= 0; --i) {
-        remainder = remainder * BigInt(std::to_string(this->base)) + BigInt(std::to_string(this->blocks[i]));
-        
-        int div = 0;
-        BigInt tempProduct;
-        while (remainder >= other) {
-            remainder = remainder - other;
-            ++div;
-        }
-        result.blocks.insert(result.blocks.begin(), div);
-    }
-
-    // Loại bỏ các số 0 đầu tiên không cần thiết
-    while (!result.blocks.empty() && result.blocks.back() == 0) {
-        result.blocks.pop_back();
-    }
-
-    return result;
+    return BigInt();  // Kết quả tạm thời
 }
 
 bool BigInt::operator==(const BigInt& other) const {
