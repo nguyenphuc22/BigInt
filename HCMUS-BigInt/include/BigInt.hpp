@@ -21,6 +21,8 @@ private:
     std::vector<int> blocks;
 
     std::vector<int> from_string(const std::string& inputString = "0");
+    void normalize();
+    void removeLeadingZeros();
 
 public:
     BigInt(const std::string& inputString = "0");
@@ -30,12 +32,7 @@ public:
     BigInt operator*(const BigInt& other) const;
     BigInt operator/(const BigInt& other) const;
     BigInt operator%(const BigInt& other) const;
-    bool operator==(const BigInt& other) const;
-    bool operator!=(const BigInt& other) const;
-    bool operator<(const BigInt& other) const;
-    bool operator>(const BigInt& other) const;
-    bool operator<=(const BigInt& other) const;
-    bool operator>=(const BigInt& other) const;
+    BigInt handleDifferentSignsSubtraction(const BigInt& other) const;
 
     BigInt pow(const BigInt& power) const;
 
@@ -47,3 +44,4 @@ public:
 };
 
 #endif /* BigInt_hpp */
+
