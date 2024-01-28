@@ -127,13 +127,6 @@ BigInt BigInt::operator+(const BigInt& other) const {
     return result;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
-
-void BigInt::removeLeadingZeros() {
-    while (blocks.size() > 1 && blocks.back() == 0) {
-        blocks.pop_back();
-    }
-}
-
 bool BigInt::absGreater(const BigInt& other) const {
     if (this->blocks.size() != other.blocks.size()) {
         return this->blocks.size() > other.blocks.size();
@@ -150,34 +143,53 @@ bool BigInt::absGreater(const BigInt& other) const {
 
 
 BigInt BigInt::operator-(const BigInt& other) const {
+
     BigInt result;
-    // Xác định số lớn hơn và nhỏ hơn về giá trị tuyệt đối
-    const BigInt *larger, *smaller;
-    bool resultNegative = false;
-        
-    if (this->absGreater(other)) {
-        larger = this;
-        smaller = &other;
-        resultNegative = this->sign < 0;
-    } else {
-        larger = &other;
-        smaller = this;
-        resultNegative = other.sign > 0;
+    //Kiểm tra xem có phải cả hai số đều là số không
+    if (this->blocks.empty() || (other.blocks.empty())) {
+        return BigInt("0");
     }
 
-    result.sign = resultNegative ? -1 : 1;
+    // Trường hợp 1 số "0" cộng cho số lớn 
+    if (this->blocks.size() == 1 &&  this->blocks[0] == 0){
+        return other;
+    }
+    if (other.blocks.size() == 1 && other.blocks[0] == 0){
+        return *this;
+    }
+    ////////////////////////////////////////
+    // Trường hợp trừ 2 số khác dấu
+    if (this->sign != other.sign) {
+        // Xác định số có giá trị tuyệt đối lớn hơn
+        if (this->absGreater(other)) {
+            return *this + other;
+        } else {
+            return other + *this;
+        }
+    }
+    ////////////////////////////////////////
+    // Trường hợp trừ 2 số cùng dấu
+    size_t n = std::max(this->blocks.size(), other.blocks.size());
+    result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
+
     int borrow = 0;
+    long long difference;
 
-    for (size_t i = 0; i < larger->blocks.size() || borrow; ++i) {
-        int difference = larger->blocks[i] - (i < smaller->blocks.size() ? smaller->blocks[i] : 0) - borrow;
+    for (size_t i = 0; i < n; ++i) {
+        difference = (i < this->blocks.size() ? this->blocks[i] : 0) - 
+                     (i < other.blocks.size() ? other.blocks[i] : 0) - borrow;
         borrow = difference < 0;
-        if (borrow) difference += base;
+        if (borrow) {
+            difference += base;
+        }
 
-        result.blocks.push_back(difference);
+        result.blocks[i] = difference;  // Cập nhật giá trị cho block hiện tại
     }
 
-    // Loại bỏ các block không cần thiết ở cuối
-    result.removeLeadingZeros();
+    // Xóa các blocks dư thừa ở cuối
+    while (!result.blocks.empty() && result.blocks.back() == 0) {
+        result.blocks.pop_back();
+    }
 
     return result;
 }
