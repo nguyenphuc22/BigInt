@@ -177,3 +177,15 @@ if __name__ == '__main__':
     createFileTestCaseBigIntCompare(1000,LargerThanEqual)
     createFileTestCaseBigIntCompare(1000,other)
     print_hi('PyCharm')
+    
+
+
+
+
+# ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt
+# ./HCMUS-BigInt ../../CreateTestCaseBigInt/data/sub.txt
+# ./HCMUS-BigInt-Test /home/nguyenthanhphong/HCMUS-BigInt-main/CreateTestCaseBigInt/data/sub.txt
+
+
+
+

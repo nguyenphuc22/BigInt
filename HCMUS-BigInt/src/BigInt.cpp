@@ -17,7 +17,6 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
         return result;
     }
 
-
     int startIndex = (inputString[0] == '-') ? 1 : 0;
 
     int block = 0;
@@ -48,38 +47,168 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
     return result;
 }
 
+void BigInt::removeLeadingZeros() {
+    while (blocks.size() > 1 && blocks.back() == 0) {
+        blocks.pop_back();
+    }
+}
 
-// Constructor
+void BigInt::normalize() {
+    for (size_t i = 0; i < blocks.size() - 1; ++i) {
+        int carry = blocks[i] / base;
+        blocks[i] %= base;
+        blocks[i + 1] += carry;
+    }
+
+    removeLeadingZeros();
+}
+
+
+
+
+// // Constructor
+// BigInt::BigInt(const std::string& inputString) {
+//         base = 1000000;  // 10^6
+        
+//         if (inputString.empty()) {
+//             // Xử lý lỗi hoặc đặt mặc định 0
+//             sign = 0;
+//             return;
+//         }
+
+//         // Xác định dấu dựa trên ký tự đầu tiên của chuỗi
+//         if (inputString[0] == '-') {
+//             sign = -1;
+//         } else {
+//             sign = 1;
+//         }
+
+//         // Chuyển đổi chuỗi thành khối số nguyên (blocks)
+//         blocks = from_string(inputString);
+// }
+
+
 BigInt::BigInt(const std::string& inputString) {
-    base = 1000000;  // 10^6
-    
+    base = 1000000; // 10^6
+
     if (inputString.empty()) {
-        // Xử lý lỗi hoặc đặt mặc định 0
         sign = 0;
         return;
     }
 
-    // Xác định dấu dựa trên ký tự đầu tiên của chuỗi
-    if (inputString[0] == '-') {
-        sign = -1;
-    } else {
-        sign = 1;
+    sign = (inputString[0] == '-') ? -1 : 1;
+    blocks = from_string(inputString);
+    normalize();
+}
+
+
+// // Toán tử cộng
+// BigInt BigInt::operator+(const BigInt& other) const {
+//     // Triển khai phép cộng tại đây
+//     return BigInt();  // Kết quả tạm thời
+// }
+
+
+BigInt BigInt::operator+(const BigInt& other) const {
+    if (blocks.empty() || other.blocks.empty()) {
+        return BigInt("0");
     }
 
-    // Chuyển đổi chuỗi thành khối số nguyên (blocks)
-    blocks = from_string(inputString);}
+    if (sign != other.sign) {
+        return handleDifferentSignsSubtraction(other);
+    }
 
-// Toán tử cộng
-BigInt BigInt::operator+(const BigInt& other) const {
-    // Triển khai phép cộng tại đây
-    return BigInt();  // Kết quả tạm thời
+    BigInt result;
+    result.sign = sign;
+    int carry = 0;
+    size_t n = std::max(blocks.size(), other.blocks.size());
+    result.blocks.resize(n, 0);
+
+    for (size_t i = 0; i < n; ++i) {
+        int sum = carry;
+        if (i < blocks.size()) sum += blocks[i];
+        if (i < other.blocks.size()) sum += other.blocks[i];
+
+        carry = sum / base;
+        sum %= base;
+
+        result.blocks[i] = sum;
+    }
+
+    if (carry > 0) {
+        result.blocks.push_back(carry);
+    }
+
+    while (!result.blocks.empty() && result.blocks.back() == 0) {
+        result.blocks.pop_back();
+    }
+
+    return result;
 }
 
-// Toán tử trừ
+
+BigInt BigInt::handleDifferentSignsSubtraction(const BigInt& other) const {
+    BigInt result;
+
+    if (blocks.size() < other.blocks.size()) {
+        result = other;
+    } else {
+        result = *this;
+    }
+
+    if (blocks.size() < other.blocks.size()) {
+        result.sign = -result.sign;
+    }
+
+    for (size_t i = 0; i < std::min(blocks.size(), other.blocks.size()); ++i) {
+        result.blocks[i] -= other.blocks[i];
+
+        if (result.blocks[i] < 0) {
+            result.blocks[i] += base;
+            --result.blocks[i + 1];
+        }
+    }
+
+    result.removeLeadingZeros();
+
+    return result;
+}
+
+// // Toán tử trừ
+// BigInt BigInt::operator-(const BigInt& other) const {
+//     // Triển khai phép trừ tại đây
+//     return BigInt();  // Kết quả tạm thời
+// }
+
+
 BigInt BigInt::operator-(const BigInt& other) const {
-    // Triển khai phép trừ tại đây
-    return BigInt();  // Kết quả tạm thời
+    if (blocks.empty() || other.blocks.empty()) {
+        return BigInt("0");
+    }
+
+    if (sign != other.sign) {
+        return handleDifferentSignsSubtraction(other);
+    }
+
+    BigInt result = *this;
+    result.sign *= -1;
+    result.blocks.resize(std::max(result.blocks.size(), other.blocks.size()), 0);
+
+    for (size_t i = 0; i < other.blocks.size(); ++i) {
+        result.blocks[i] -= other.blocks[i];
+
+        if (result.blocks[i] < 0) {
+            result.blocks[i] += base;
+            --result.blocks[i + 1];
+        }
+    }
+
+    result.removeLeadingZeros();
+
+    return result;
 }
+
+
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
@@ -87,47 +216,10 @@ BigInt BigInt::operator*(const BigInt& other) const {
     return BigInt();  // Kết quả tạm thời
 }
 
-
+// Toán tử chia
 BigInt BigInt::operator/(const BigInt& other) const {
+    // Triển khai phép chia tại đây
     return BigInt();  // Kết quả tạm thời
-}
-
-bool BigInt::operator==(const BigInt& other) const {
-    return sign == other.sign && blocks == other.blocks;
-}
-
-bool BigInt::operator!=(const BigInt& other) const {
-    return !(*this == other);
-}
-
-bool BigInt::operator<(const BigInt& other) const {
-    if (sign != other.sign) {
-        return sign < other.sign;
-    }
-
-    if (blocks.size() != other.blocks.size()) {
-        return (sign == 1) ? blocks.size() < other.blocks.size() : blocks.size() > other.blocks.size();
-    }
-
-    for (long i = blocks.size() - 1; i >= 0; i--) {
-        if (blocks[i] != other.blocks[i]) {
-            return (sign == 1) ? blocks[i] < other.blocks[i] : blocks[i] > other.blocks[i];
-        }
-    }
-
-    return false; // Các số bằng nhau
-}
-
-bool BigInt::operator>(const BigInt& other) const {
-    return other < *this;
-}
-
-bool BigInt::operator<=(const BigInt& other) const {
-    return !(*this > other);
-}
-
-bool BigInt::operator>=(const BigInt& other) const {
-    return !(*this < other);
 }
 
 // Toán tử chia lấy dư
@@ -142,12 +234,39 @@ BigInt BigInt::pow(const BigInt& power) const {
     return BigInt();  // Kết quả tạm thời
 }
 
-// Ghi dữ liệu ra ostream
+
+// // Ghi dữ liệu ra ostream
+
+// std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
+//     os << "BigInt: ";
+//     if (bigint.sign == -1) {
+//         os << "-";
+//     }
+//     for (long i = bigint.blocks.size() - 1; i >= 0; i--) {
+//         os << bigint.blocks[i];
+//         if (i > 0) {
+//             os << " ";
+//         }
+//     }
+//     return os;
+// }
+
+// // Phương thức chuyển đổi BigInt thành chuỗi
+// std::string BigInt::to_string() const {
+//     std::string result;
+//     if (sign == -1) {
+//         result += "-";
+//     }
+//     for (long i = blocks.size() - 1; i >= 0; i--) {
+//         result += std::to_string(blocks[i]);
+//     }
+//     return result;
+// }
+
+
 std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
     os << "BigInt: ";
-    if (bigint.sign == -1) {
-        os << "-";
-    }
+    os << ((bigint.sign == -1) ? "-" : "");
     for (long i = bigint.blocks.size() - 1; i >= 0; i--) {
         os << bigint.blocks[i];
         if (i > 0) {
@@ -157,18 +276,19 @@ std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
     return os;
 }
 
-// Phương thức chuyển đổi BigInt thành chuỗi
 std::string BigInt::to_string() const {
-    std::string result;
-    if (sign == -1) {
-        result += "-";
-    }
+    std::string result = (sign == -1) ? "-" : "";
     for (long i = blocks.size() - 1; i >= 0; i--) {
         result += std::to_string(blocks[i]);
     }
     return result;
 }
 
+// void BigInt::removeLeadingZeros() {
+//     while (blocks.size() > 1 && blocks.back() == 0) {
+//         blocks.pop_back();
+//     }
+// }
 
 
 // Các phương thức trợ giúp khác có thể được thêm vào tại đây

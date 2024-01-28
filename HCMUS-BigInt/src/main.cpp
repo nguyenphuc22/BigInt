@@ -26,5 +26,7 @@ int main() {
     
     std::cout << 10 % 3 << std::endl;
 
+    std::cout << a - b << std::endl;
+
     return 0;
 }

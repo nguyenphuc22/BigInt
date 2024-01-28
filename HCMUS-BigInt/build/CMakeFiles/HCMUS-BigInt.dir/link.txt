@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/HCMUS-BigInt.dir/home/nguyenthanhphong/HCMUS-BigInt-main/HCMUS-BigInt/src/main.cpp.o" -o HCMUS-BigInt 
