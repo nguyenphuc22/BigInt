@@ -70,22 +70,29 @@ BigInt::BigInt(const std::string& inputString) {
     // Chuyển đổi chuỗi thành khối số nguyên (blocks)
     blocks = from_string(inputString);}
 
+//////////////////////////////// PHẦN CỦA VIÊN ////////////////////////////////////////////
 // Toán tử cộng
-
 BigInt BigInt::operator+(const BigInt& other) const {
+    BigInt result;
     //Kiểm tra xem có phải cả hai số đều là số không
     if (this->blocks.empty() || (other.blocks.empty())) {
         return BigInt("0");
     }
 
-    // Nếu một trong hai số là âm, xử lý trường hợp này riêng
-    if (this->sign != other.sign) {
-        // Xử lý cộng số âm và số dương
-        // ...
-        // Trả về kết quả sau khi xử lý
+    // Trường hợp 1 số "0" cộng cho số lớn 
+    if (this->blocks.size() == 1 &&  this->blocks[0] == 0){
+        return other;
+    }
+    if (other.blocks.size() == 1 && other.blocks[0] == 0){
+        return *this;
     }
 
-    BigInt result;
+    // Trường hợp cộng 2 số khác dấu
+    if (this->sign != other.sign) {
+        return handleDifferentSignsSubtraction(other);
+    }
+
+    // Trường hợp cộng cùng dấu 
     result.sign = this->sign;
     int carry = 0;  // Biến nhớ khi cộng
     size_t n = std::max(this->blocks.size(), other.blocks.size());
@@ -113,12 +120,72 @@ BigInt BigInt::operator+(const BigInt& other) const {
 
     return result;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Toán tử trừ
-BigInt BigInt::operator-(const BigInt& other) const {
-    // Triển khai phép trừ tại đây
-    return BigInt();  // Kết quả tạm thời
+
+//////////////////////////////// PHẦN CỦA ANH PHONG ////////////////////////////////////////////
+void BigInt::removeLeadingZeros() {
+    while (blocks.size() > 1 && blocks.back() == 0) {
+        blocks.pop_back();
+    }
 }
+
+BigInt BigInt::handleDifferentSignsSubtraction(const BigInt& other) const {
+    BigInt result;
+
+    if (blocks.size() < other.blocks.size()) {
+        result = other;
+    } else {
+        result = *this;
+    }
+
+    if (blocks.size() < other.blocks.size()) {
+        result.sign = -result.sign;
+    }
+
+    for (size_t i = 0; i < std::min(blocks.size(), other.blocks.size()); ++i) {
+        result.blocks[i] -= other.blocks[i];
+
+        if (result.blocks[i] < 0) {
+            result.blocks[i] += base;
+            --result.blocks[i + 1];
+        }
+    }
+
+    result.removeLeadingZeros();
+
+    return result;
+}
+
+
+BigInt BigInt::operator-(const BigInt& other) const {
+    if (blocks.empty() || other.blocks.empty()) {
+        return BigInt("0");
+    }
+
+    if (sign != other.sign) {
+        return handleDifferentSignsSubtraction(other);
+    }
+
+    BigInt result = *this;
+    result.sign *= -1;
+    result.blocks.resize(std::max(result.blocks.size(), other.blocks.size()), 0);
+
+    for (size_t i = 0; i < other.blocks.size(); ++i) {
+        result.blocks[i] -= other.blocks[i];
+
+        if (result.blocks[i] < 0) {
+            result.blocks[i] += base;
+            --result.blocks[i + 1];
+        }
+    }
+
+    result.removeLeadingZeros();
+
+    return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {

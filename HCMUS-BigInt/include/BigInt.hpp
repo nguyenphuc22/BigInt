@@ -44,6 +44,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const BigInt& bigint);
     
     // Có thể thêm các phương thức trợ giúp khác nếu cần
+    BigInt handleDifferentSignsSubtraction(const BigInt& other) const;
+    void removeLeadingZeros();
 };
-
 #endif /* BigInt_hpp */
