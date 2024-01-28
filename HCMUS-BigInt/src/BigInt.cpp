@@ -86,11 +86,17 @@ BigInt BigInt::operator+(const BigInt& other) const {
     if (other.blocks.size() == 1 && other.blocks[0] == 0){
         return *this;
     }
-
+    ////////////////////////////////////////
     // Trường hợp cộng 2 số khác dấu
     if (this->sign != other.sign) {
-        return handleDifferentSignsSubtraction(other);
+        // Xác định số có giá trị tuyệt đối lớn hơn
+        if (this->absGreater(other)) {
+            return *this - other;
+        } else {
+            return other - *this;
+        }
     }
+    ///////////////////////////////////////
 
     // Trường hợp cộng cùng dấu 
     result.sign = this->sign;
@@ -122,70 +128,61 @@ BigInt BigInt::operator+(const BigInt& other) const {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//////////////////////////////// PHẦN CỦA ANH PHONG ////////////////////////////////////////////
 void BigInt::removeLeadingZeros() {
     while (blocks.size() > 1 && blocks.back() == 0) {
         blocks.pop_back();
     }
 }
 
-BigInt BigInt::handleDifferentSignsSubtraction(const BigInt& other) const {
-    BigInt result;
-
-    if (blocks.size() < other.blocks.size()) {
-        result = other;
-    } else {
-        result = *this;
+bool BigInt::absGreater(const BigInt& other) const {
+    if (this->blocks.size() != other.blocks.size()) {
+        return this->blocks.size() > other.blocks.size();
     }
 
-    if (blocks.size() < other.blocks.size()) {
-        result.sign = -result.sign;
-    }
-
-    for (size_t i = 0; i < std::min(blocks.size(), other.blocks.size()); ++i) {
-        result.blocks[i] -= other.blocks[i];
-
-        if (result.blocks[i] < 0) {
-            result.blocks[i] += base;
-            --result.blocks[i + 1];
+    for (int i = this->blocks.size() - 1; i >= 0; --i) {
+        if (this->blocks[i] != other.blocks[i]) {
+            return this->blocks[i] > other.blocks[i];
         }
     }
 
-    result.removeLeadingZeros();
-
-    return result;
+    return false;
 }
 
 
 BigInt BigInt::operator-(const BigInt& other) const {
-    if (blocks.empty() || other.blocks.empty()) {
-        return BigInt("0");
+    BigInt result;
+    // Xác định số lớn hơn và nhỏ hơn về giá trị tuyệt đối
+    const BigInt *larger, *smaller;
+    bool resultNegative = false;
+        
+    if (this->absGreater(other)) {
+        larger = this;
+        smaller = &other;
+        resultNegative = this->sign < 0;
+    } else {
+        larger = &other;
+        smaller = this;
+        resultNegative = other.sign > 0;
     }
 
-    if (sign != other.sign) {
-        return handleDifferentSignsSubtraction(other);
+    result.sign = resultNegative ? -1 : 1;
+    int borrow = 0;
+
+    for (size_t i = 0; i < larger->blocks.size() || borrow; ++i) {
+        int difference = larger->blocks[i] - (i < smaller->blocks.size() ? smaller->blocks[i] : 0) - borrow;
+        borrow = difference < 0;
+        if (borrow) difference += base;
+
+        result.blocks.push_back(difference);
     }
 
-    BigInt result = *this;
-    result.sign *= -1;
-    result.blocks.resize(std::max(result.blocks.size(), other.blocks.size()), 0);
-
-    for (size_t i = 0; i < other.blocks.size(); ++i) {
-        result.blocks[i] -= other.blocks[i];
-
-        if (result.blocks[i] < 0) {
-            result.blocks[i] += base;
-            --result.blocks[i + 1];
-        }
-    }
-
+    // Loại bỏ các block không cần thiết ở cuối
     result.removeLeadingZeros();
 
     return result;
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
