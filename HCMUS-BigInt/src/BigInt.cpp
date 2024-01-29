@@ -89,6 +89,7 @@ BigInt BigInt::operator+(const BigInt& other) const {
 
     // Trường hợp cộng cùng dấu 
     if (this->sign == other.sign){
+        result.sign = this->sign;
         int carry = 0;  // Biến nhớ khi cộng
         size_t n = std::max(this->blocks.size(), other.blocks.size());
         result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
@@ -148,6 +149,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
 
     // Trường hợp trừ cùng dấu
     if (this->sign == other.sign) {
+        result.sign = this->sign;
         const BigInt* larger = nullptr;
         const BigInt* smaller = nullptr;
 
@@ -191,7 +193,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
     }
 
     return result;
-       
+
 }
 // Hàm so sánh độ lớn
 bool BigInt::isLargerThan(const BigInt& a, const BigInt& b) const {
