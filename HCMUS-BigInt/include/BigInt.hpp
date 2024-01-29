@@ -45,7 +45,5 @@ public:
     
     // Có thể thêm các phương thức trợ giúp khác nếu cần
     bool isLargerThan(const BigInt& a, const BigInt& b) const;
-    void removeLeadingZeros();
-
 };
 #endif /* BigInt_hpp */

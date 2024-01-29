@@ -203,6 +203,7 @@ bool BigInt::isLargerThan(const BigInt& a, const BigInt& b) const {
     }
     return false;  // Hai số bằng nhau
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
