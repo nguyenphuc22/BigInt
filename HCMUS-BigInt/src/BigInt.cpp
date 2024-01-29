@@ -144,7 +144,7 @@ BigInt BigInt::subtractSameSignNumbers(const BigInt &other) const {
     return result;
 }
 
-BigInt addDifferentSignNumbers(const BigInt& other) const {
+BigInt BigInt::addDifferentSignNumbers(const BigInt& other) const {
     BigInt result;
     BigInt tempOther = other;
     tempOther.sign *= -1; // Đảo dấu của 'other'
