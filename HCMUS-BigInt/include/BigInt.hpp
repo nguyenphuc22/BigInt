@@ -22,6 +22,14 @@ private:
 
     std::vector<int> from_string(const std::string& inputString = "0");
 
+    // Có thể thêm các phương thức trợ giúp khác nếu cần
+    bool isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const;
+    void removeLeadingZeros();
+    BigInt addSameSignNumbers(const BigInt& other) const;
+    BigInt addDifferentSignNumbers(const BigInt& other) const;
+    BigInt subtractDifferentSignNumbers(const BigInt& other) const;
+    BigInt subtractSameSignNumbers(const BigInt& other) const;
+
 public:
     BigInt(const std::string& inputString = "0");
 
@@ -43,7 +51,6 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const BigInt& bigint);
     
-    // Có thể thêm các phương thức trợ giúp khác nếu cần
-    bool isLargerThan(const BigInt& a, const BigInt& b) const;
+
 };
 #endif /* BigInt_hpp */

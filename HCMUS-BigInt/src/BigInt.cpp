@@ -68,9 +68,90 @@ BigInt::BigInt(const std::string& inputString) {
     }
 
     // Chuyển đổi chuỗi thành khối số nguyên (blocks)
-    blocks = from_string(inputString);}
+    blocks = from_string(inputString);
+}
 
-//////////////////////////////// PHẦN CỦA VIÊN ////////////////////////////////////////////
+BigInt BigInt::addSameSignNumbers(const BigInt &other) const {
+    BigInt result;
+    result.sign = this->sign;
+    int carry = 0;  // Biến nhớ khi cộng
+    size_t n = std::max(this->blocks.size(), other.blocks.size());
+    result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
+
+    for (size_t i = 0; i < n; ++i) {
+        int sum = carry;
+        if (i < this->blocks.size()) sum += this->blocks[i];
+        if (i < other.blocks.size()) sum += other.blocks[i];
+
+        carry = sum / base;  // Tính carry
+        sum %= base;         // Giữ lại phần dưới của block
+
+        result.blocks[i] = sum;
+    }
+
+    if (carry > 0) {
+        result.blocks.push_back(carry);
+    }
+
+    return result;
+}
+
+BigInt BigInt::subtractDifferentSignNumbers(const BigInt &other) const {
+    BigInt result;
+    BigInt tempOther = other;
+    tempOther.sign *= -1; // Đảo dấu của 'other'
+
+    // Xác định số nào lớn hơn và thực hiện phép trừ
+    if (isFirstLargerThanSecond(*this, tempOther)) {
+        result = *this - tempOther;
+        result.sign = this->sign;
+    } else {
+        result = tempOther - *this;
+        result.sign = other.sign;
+    }
+
+    return result;
+}
+
+BigInt BigInt::subtractSameSignNumbers(const BigInt &other) const {
+    BigInt result;
+    result.sign = this->sign;
+    const BigInt* larger = nullptr;
+    const BigInt* smaller = nullptr;
+
+    if (isFirstLargerThanSecond(*this, other)) {
+        larger = this;
+        smaller = &other;
+        result.sign = this->sign;
+    } else {
+        larger = &other;
+        smaller = this;
+        result.sign = -this->sign;
+    }
+
+    result.blocks.resize(larger->blocks.size(), 0);
+    int borrow = 0;
+    for (size_t i = 0; i < larger->blocks.size(); ++i) {
+        int diff = larger->blocks[i] - borrow - (i < smaller->blocks.size() ? smaller->blocks[i] : 0);
+        borrow = 0;
+        if (diff < 0) {
+            diff += base;
+            borrow = 1;
+        }
+        result.blocks[i] = diff;
+    }
+
+    return result;
+}
+
+BigInt addDifferentSignNumbers(const BigInt& other) const {
+    BigInt result;
+    BigInt tempOther = other;
+    tempOther.sign *= -1; // Đảo dấu của 'other'
+    result = *this + tempOther; // Sử dụng phương thức cộng
+    return result;
+}
+
 // Toán tử cộng
 BigInt BigInt::operator+(const BigInt& other) const {
     BigInt result;
@@ -87,51 +168,20 @@ BigInt BigInt::operator+(const BigInt& other) const {
         return *this;
     }
 
-    // Trường hợp cộng cùng dấu 
     if (this->sign == other.sign){
-        result.sign = this->sign;
-        int carry = 0;  // Biến nhớ khi cộng
-        size_t n = std::max(this->blocks.size(), other.blocks.size());
-        result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
-
-        for (size_t i = 0; i < n; ++i) {
-            int sum = carry;
-            if (i < this->blocks.size()) sum += this->blocks[i];
-            if (i < other.blocks.size()) sum += other.blocks[i];
-
-            carry = sum / base;  // Tính carry
-            sum %= base;         // Giữ lại phần dưới của block
-
-            result.blocks[i] = sum;
-        }
-
-        if (carry > 0) {
-            result.blocks.push_back(carry);
-        }        
-    } else {    // Trường hợp trái dấu
-        BigInt tempOther = other;
-        tempOther.sign *= -1; // Đảo dấu của 'other'
-        
-        // Xác định số nào lớn hơn và thực hiện phép trừ
-        if (isLargerThan(*this, tempOther)) {
-            result = *this - tempOther;
-            result.sign = this->sign;
-        } else {
-            result = tempOther - *this;
-            result.sign = other.sign;
-        }        
+        // Trường hợp cộng cùng dấu
+        result = addSameSignNumbers(other);
+    } else {
+        // Trường hợp trái dấu
+        result = subtractDifferentSignNumbers(other);
     }
 
     // Xóa các blocks dư thừa ở cuối
-    while (!result.blocks.empty() && result.blocks.back() == 0) {
-        result.blocks.pop_back();
-    }
+    result.removeLeadingZeros();
 
     return result;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 BigInt BigInt::operator-(const BigInt& other) const {
     BigInt result;
     //Kiểm tra xem có phải cả hai số đều là số không
@@ -149,48 +199,23 @@ BigInt BigInt::operator-(const BigInt& other) const {
         result.sign = this->sign;
     }
 
-    // Trường hợp trừ cùng dấu
     if (this->sign == other.sign) {
-        result.sign = this->sign;
-        const BigInt* larger = nullptr;
-        const BigInt* smaller = nullptr;
-
-        if (isLargerThan(*this, other)) {
-            larger = this;
-            smaller = &other;
-            result.sign = this->sign;
-        } else {
-            larger = &other;
-            smaller = this;
-            result.sign = -this->sign;
-        }
-
-        result.blocks.resize(larger->blocks.size(), 0);
-        int borrow = 0;
-        for (size_t i = 0; i < larger->blocks.size(); ++i) {
-            int diff = larger->blocks[i] - borrow - (i < smaller->blocks.size() ? smaller->blocks[i] : 0);
-            borrow = 0;
-            if (diff < 0) {
-                diff += base;
-                borrow = 1;
-            }
-            result.blocks[i] = diff;
-        }
-    }else {     // Trường hợp trừ khác dấu
-        BigInt tempOther = other;
-        tempOther.sign *= -1; // Đảo dấu của 'other'
-        result = *this + tempOther; // Sử dụng phương thức cộng
+        // Trường hợp trừ cùng dấu
+        result = subtractSameSignNumbers(other);
+    }else {
+        // Trường hợp trừ khác dấu
+        result = addDifferentSignNumbers(other);
     }
-        // Loại bỏ các số 0 không cần thiết ở cuối
-    while (!result.blocks.empty() && result.blocks.back() == 0) {
-        result.blocks.pop_back();
-    }
+
+    // Loại bỏ các số 0 không cần thiết ở cuối
+    result.removeLeadingZeros();
 
     return result;
 
 }
+
 // Hàm so sánh độ lớn
-bool BigInt::isLargerThan(const BigInt& a, const BigInt& b) const {
+bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
     // So sánh độ dài của vector
     if (a.blocks.size() != b.blocks.size()) {
         return a.blocks.size() > b.blocks.size();
@@ -203,12 +228,17 @@ bool BigInt::isLargerThan(const BigInt& a, const BigInt& b) const {
     }
     return false;  // Hai số bằng nhau
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
     // Triển khai phép nhân tại đây
     return BigInt();  // Kết quả tạm thời
+}
+
+void BigInt::removeLeadingZeros() {
+    while (!blocks.empty() && blocks.back() == 0) {
+        blocks.pop_back();
+    }
 }
 
 
