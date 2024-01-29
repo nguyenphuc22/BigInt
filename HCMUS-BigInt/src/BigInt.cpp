@@ -6,6 +6,7 @@
 //
 
 #include "../include/BigInt.hpp"
+#include <iomanip>
 
 // Hàm từ chuỗi sang dạng biểu diễn BigInt
 std::vector<int> BigInt::from_string(const std::string& inputString) {
@@ -67,24 +68,177 @@ BigInt::BigInt(const std::string& inputString) {
     }
 
     // Chuyển đổi chuỗi thành khối số nguyên (blocks)
-    blocks = from_string(inputString);}
+    blocks = from_string(inputString);
+}
+
+BigInt BigInt::addSameSignNumbers(const BigInt &other) const {
+    BigInt result;
+    result.sign = this->sign;
+    int carry = 0;  // Biến nhớ khi cộng
+    size_t n = std::max(this->blocks.size(), other.blocks.size());
+    result.blocks.resize(n, 0); // Khởi tạo các blocks với giá trị 0
+
+    for (size_t i = 0; i < n; ++i) {
+        int sum = carry;
+        if (i < this->blocks.size()) sum += this->blocks[i];
+        if (i < other.blocks.size()) sum += other.blocks[i];
+
+        carry = sum / base;  // Tính carry
+        sum %= base;         // Giữ lại phần dưới của block
+
+        result.blocks[i] = sum;
+    }
+
+    if (carry > 0) {
+        result.blocks.push_back(carry);
+    }
+
+    return result;
+}
+
+BigInt BigInt::subtractDifferentSignNumbers(const BigInt &other) const {
+    BigInt result;
+    BigInt tempOther = other;
+    tempOther.sign *= -1; // Đảo dấu của 'other'
+
+    // Xác định số nào lớn hơn và thực hiện phép trừ
+    if (isFirstLargerThanSecond(*this, tempOther)) {
+        result = *this - tempOther;
+        result.sign = this->sign;
+    } else {
+        result = tempOther - *this;
+        result.sign = other.sign;
+    }
+
+    return result;
+}
+
+BigInt BigInt::subtractSameSignNumbers(const BigInt &other) const {
+    BigInt result;
+    result.sign = this->sign;
+    const BigInt* larger = nullptr;
+    const BigInt* smaller = nullptr;
+
+    if (isFirstLargerThanSecond(*this, other)) {
+        larger = this;
+        smaller = &other;
+        result.sign = this->sign;
+    } else {
+        larger = &other;
+        smaller = this;
+        result.sign = -this->sign;
+    }
+
+    result.blocks.resize(larger->blocks.size(), 0);
+    int borrow = 0;
+    for (size_t i = 0; i < larger->blocks.size(); ++i) {
+        int diff = larger->blocks[i] - borrow - (i < smaller->blocks.size() ? smaller->blocks[i] : 0);
+        borrow = 0;
+        if (diff < 0) {
+            diff += base;
+            borrow = 1;
+        }
+        result.blocks[i] = diff;
+    }
+
+    return result;
+}
+
+BigInt BigInt::addDifferentSignNumbers(const BigInt& other) const {
+    BigInt result;
+    BigInt tempOther = other;
+    tempOther.sign *= -1; // Đảo dấu của 'other'
+    result = *this + tempOther; // Sử dụng phương thức cộng
+    return result;
+}
 
 // Toán tử cộng
 BigInt BigInt::operator+(const BigInt& other) const {
-    // Triển khai phép cộng tại đây
-    return BigInt();  // Kết quả tạm thời
+    BigInt result;
+    //Kiểm tra xem có phải cả hai số đều là số không
+    if (this->blocks.empty() || (other.blocks.empty())) {
+        return BigInt("0");
+    }
+
+    // Trường hợp 1 số "0" cộng cho số lớn 
+    if (this->blocks.size() == 1 &&  this->blocks[0] == 0){
+        return other;
+    }
+    if (other.blocks.size() == 1 && other.blocks[0] == 0){
+        return *this;
+    }
+
+    if (this->sign == other.sign){
+        // Trường hợp cộng cùng dấu
+        result = addSameSignNumbers(other);
+    } else {
+        // Trường hợp trái dấu
+        result = subtractDifferentSignNumbers(other);
+    }
+
+    // Xóa các blocks dư thừa ở cuối
+    result.removeLeadingZeros();
+
+    return result;
 }
 
-// Toán tử trừ
 BigInt BigInt::operator-(const BigInt& other) const {
-    // Triển khai phép trừ tại đây
-    return BigInt();  // Kết quả tạm thời
+    BigInt result;
+    //Kiểm tra xem có phải cả hai số đều là số không
+    if (this->blocks.empty() || (other.blocks.empty())) {
+        return BigInt("0");
+    }
+
+    // Trường hợp 1 số "0" trừ cho số lớn 
+    if (this->blocks.size() == 1 &&  this->blocks[0] == 0){
+        result = other;
+        result.sign = other.sign;
+    }
+    if (other.blocks.size() == 1 && other.blocks[0] == 0){
+        result = *this;
+        result.sign = this->sign;
+    }
+
+    if (this->sign == other.sign) {
+        // Trường hợp trừ cùng dấu
+        result = subtractSameSignNumbers(other);
+    }else {
+        // Trường hợp trừ khác dấu
+        result = addDifferentSignNumbers(other);
+    }
+
+    // Loại bỏ các số 0 không cần thiết ở cuối
+    result.removeLeadingZeros();
+
+    return result;
+
+}
+
+// Hàm so sánh độ lớn
+bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
+    // So sánh độ dài của vector
+    if (a.blocks.size() != b.blocks.size()) {
+        return a.blocks.size() > b.blocks.size();
+    }
+    // So sánh từng block
+    for (int i = a.blocks.size() - 1; i >= 0; i--) {
+        if (a.blocks[i] != b.blocks[i]) {
+            return a.blocks[i] > b.blocks[i];
+        }
+    }
+    return false;  // Hai số bằng nhau
 }
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
     // Triển khai phép nhân tại đây
     return BigInt();  // Kết quả tạm thời
+}
+
+void BigInt::removeLeadingZeros() {
+    while (!blocks.empty() && blocks.back() == 0) {
+        blocks.pop_back();
+    }
 }
 
 
@@ -144,16 +298,25 @@ BigInt BigInt::pow(const BigInt& power) const {
 
 // Ghi dữ liệu ra ostream
 std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
+    
+    if (bigint.blocks.empty() || (bigint.blocks.size() == 1 && bigint.blocks[0] == 0)) {
+        os << "BigInt: 0";
+        return os;
+    }
+
     os << "BigInt: ";
     if (bigint.sign == -1) {
         os << "-";
     }
-    for (long i = bigint.blocks.size() - 1; i >= 0; i--) {
-        os << bigint.blocks[i];
-        if (i > 0) {
-            os << " ";
-        }
+
+    // Block đầu tiên
+    os << bigint.blocks.back();
+
+    // Các block tiếp theo
+    for (long i = bigint.blocks.size() - 2; i >= 0; i--) {
+        os << " " << std::setw(6) << std::setfill('0') << bigint.blocks[i];
     }
+
     return os;
 }
 
