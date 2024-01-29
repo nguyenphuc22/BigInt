@@ -177,15 +177,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
     }else {     // Trường hợp trừ khác dấu
         BigInt tempOther = other;
         tempOther.sign *= -1; // Đảo dấu của 'other'
-        
-        // Xác định số nào lớn hơn và thực hiện phép trừ
-        if (isLargerThan(*this, tempOther)) {
-            result = *this + tempOther;
-            result.sign = this->sign;
-        } else {
-            result = tempOther + *this;
-            result.sign = other.sign;
-        }  
+        result = *this + tempOther; // Sử dụng phương thức cộng
     }
         // Loại bỏ các số 0 không cần thiết ở cuối
     while (!result.blocks.empty() && result.blocks.back() == 0) {
