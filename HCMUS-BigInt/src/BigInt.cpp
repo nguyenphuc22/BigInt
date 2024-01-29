@@ -113,7 +113,7 @@ BigInt BigInt::operator+(const BigInt& other) const {
         tempOther.sign *= -1; // Đảo dấu của 'other'
         
         // Xác định số nào lớn hơn và thực hiện phép trừ
-        if (*this > tempOther) {
+        if (isLargerThan(*this, tempOther)) {
             result = *this - tempOther;
             result.sign = this->sign;
         } else {
@@ -155,7 +155,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
         const BigInt* larger = nullptr;
         const BigInt* smaller = nullptr;
 
-        if (*this > other) {
+        if (isLargerThan(*this, other)) {
             larger = this;
             smaller = &other;
             result.sign = this->sign;
@@ -189,7 +189,20 @@ BigInt BigInt::operator-(const BigInt& other) const {
     return result;
 
 }
-
+// Hàm so sánh độ lớn
+bool BigInt::isLargerThan(const BigInt& a, const BigInt& b) const {
+    // So sánh độ dài của vector
+    if (a.blocks.size() != b.blocks.size()) {
+        return a.blocks.size() > b.blocks.size();
+    }
+    // So sánh từng block
+    for (int i = a.blocks.size() - 1; i >= 0; i--) {
+        if (a.blocks[i] != b.blocks[i]) {
+            return a.blocks[i] > b.blocks[i];
+        }
+    }
+    return false;  // Hai số bằng nhau
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Toán tử nhân

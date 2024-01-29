@@ -44,6 +44,6 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const BigInt& bigint);
     
     // Có thể thêm các phương thức trợ giúp khác nếu cần
-    
+    bool isLargerThan(const BigInt& a, const BigInt& b) const;
 };
 #endif /* BigInt_hpp */
