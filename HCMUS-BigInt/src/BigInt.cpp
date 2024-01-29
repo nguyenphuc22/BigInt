@@ -141,10 +141,12 @@ BigInt BigInt::operator-(const BigInt& other) const {
 
     // Trường hợp 1 số "0" trừ cho số lớn 
     if (this->blocks.size() == 1 &&  this->blocks[0] == 0){
-        return other;
+        result = other;
+        result.sign = other.sign;
     }
     if (other.blocks.size() == 1 && other.blocks[0] == 0){
-        return *this;
+        result = *this;
+        result.sign = this->sign;
     }
 
     // Trường hợp trừ cùng dấu

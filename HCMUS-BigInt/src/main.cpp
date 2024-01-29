@@ -16,8 +16,8 @@
 
 int main() {
     // Testing the BigInt class
-    std::string numberA = "303250381914212683754002280985101226448336650842091186798960591";
-    std::string numberB = "-7421903176996987557369991703289173744964500542688475416066551206";
+    std::string numberA = "-7421903176996987557369991703289173744964500542688475416066551206";
+    std::string numberB = "0";
     BigInt a = numberA;
     BigInt b = numberB;
     std::cout << a << std::endl;
