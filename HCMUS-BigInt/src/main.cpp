@@ -16,14 +16,14 @@
 
 int main() {
     // Testing the BigInt class
-    std::string numberA = "-7421903176996987557369991703289173744964500542688475416066551206";
-    std::string numberB = "0";
+    std::string numberA = "-419237164716282338679912076450847286372489822800563360086940738";
+    std::string numberB = "-5487485363702421039844700230210910494150929862503459821040897191";
     BigInt a = numberA;
     BigInt b = numberB;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     //std::cout << 10 % 3 << std::endl;
-    std::cout << (a - b).to_string() << std::endl;
+    std::cout << (a * b).to_string() << std::endl;
 
     
     return 0;

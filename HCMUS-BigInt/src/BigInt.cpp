@@ -231,8 +231,61 @@ bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
-    // Triển khai phép nhân tại đây
-    return BigInt();  // Kết quả tạm thời
+    return this->multiplySameBasicAlgorithm(other);
+}
+
+// Phương thức nhân cơ bản
+BigInt BigInt::multiplySameBasicAlgorithm(const BigInt& other) const {
+    if (this->blocks.size() == 1 && this->blocks[0] == 0) {
+        return BigInt("0");
+    }
+
+    if (other.blocks.size() == 1 && other.blocks[0] == 0) {
+        return BigInt("0");
+    }
+
+    BigInt result;
+
+
+    // Tính toán kích thước của vector kết quả
+    // Kích thước của vector kết quả sẽ là tổng của kích thước của 2 vector gốc
+    // Ví dụ: 123 * 1234
+    // Kích thước của vector kết quả sẽ là 3 + 4 = 7
+    result.blocks.resize(this->blocks.size() + other.blocks.size(), 0);
+
+    for (size_t i = 0; i < this->blocks.size(); ++i) {
+        int carry = 0;
+        for (size_t j = 0; j < other.blocks.size() || carry > 0; ++j) {
+            long long block_one = this->blocks[i]; // Ép kiểu block[i] thành long long
+
+            // Kiểm tra null safety cho other.blocks
+            long long block_two = 0;
+            if (j < other.blocks.size()) {
+                block_two = other.blocks[j];
+            }
+
+            // Tính toán giá trị hiện tại
+            long long currentSum = result.blocks[i + j] + ((block_one * block_two) + carry);
+
+            // Tách giả trị tổng thành phần dư và nguyên
+            // Phần dư sẽ là giá trị của block hiện tại
+            // Ví dụ: currentSum 1234567
+            // Phần dư: 234567
+            result.blocks[i + j] = int(currentSum % base);
+
+            // Phần nguyên sẽ là giá trị của carry
+            // Ví dụ: currentSum 1234567
+            // Phần nguyên: 1
+            carry = int(currentSum / base);
+        }
+    }
+
+    // Gán dấu cho kết quả
+    result.sign = this->sign * other.sign;
+
+    // Xóa các số 0 không cần thiết ở cuối
+    result.removeLeadingZeros();
+    return result;
 }
 
 void BigInt::removeLeadingZeros() {
