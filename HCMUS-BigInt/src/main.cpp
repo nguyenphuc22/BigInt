@@ -23,7 +23,7 @@ int main() {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     //std::cout << 10 % 3 << std::endl;
-    std::cout << a - b << std::endl;
+    std::cout << (a - b).to_string() << std::endl;
 
     
     return 0;
