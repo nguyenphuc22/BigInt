@@ -295,8 +295,38 @@ void BigInt::removeLeadingZeros() {
 }
 
 
+// Phép chia cho BigInt
 BigInt BigInt::operator/(const BigInt& other) const {
-    return BigInt();  // Kết quả tạm thời
+    if (other == BigInt("0")) {
+        throw std::invalid_argument("Division by zero");
+    }
+
+    BigInt divisor = other;
+    divisor.sign = 1;
+
+    BigInt remainder("0");
+    remainder.base = this->base;
+    BigInt quotient("0");
+    quotient.base = this->base;
+    quotient.blocks.resize(this->blocks.size(), 0);
+
+    quotient.sign = this->sign * other.sign;
+
+    for (int i = this->blocks.size() - 1; i >= 0; --i) {
+        remainder.blocks.insert(remainder.blocks.begin(), this->blocks[i]);
+        remainder.removeLeadingZeros();
+
+        BigInt count("0");
+        count.base = this->base;
+        while (remainder >= divisor) {
+            remainder = remainder - divisor;
+            count = count + BigInt("1");
+        }
+        quotient.blocks[i] = std::stoi(count.to_string());
+    }
+
+    quotient.removeLeadingZeros();
+    return quotient;
 }
 
 bool BigInt::operator==(const BigInt& other) const {

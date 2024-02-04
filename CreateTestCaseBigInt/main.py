@@ -89,7 +89,7 @@ def performOperation(operation, num1, num2):
     elif operation == Mul:
         result = num1 * num2
     elif operation == Div:
-        result = num1 / num2
+        result = num1 // num2
     elif operation == Mod:
         result = num1 % num2
     elif operation == Pow:
