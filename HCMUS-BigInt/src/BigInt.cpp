@@ -297,36 +297,41 @@ void BigInt::removeLeadingZeros() {
 
 // Phép chia cho BigInt
 BigInt BigInt::operator/(const BigInt& other) const {
+    // Triển khai phép chia tại đây
+    return this->divideSameBasicAlgorithm(other);  // Kết quả tạm thời
+}
+
+BigInt BigInt::divideSameBasicAlgorithm(const BigInt &other) const {
     if (other == BigInt("0")) {
-        throw std::invalid_argument("Division by zero");
+        throw std::invalid_argument("Division by zero is not allowed.");
     }
 
-    BigInt divisor = other;
-    divisor.sign = 1;
+    BigInt result("0");
+    BigInt tempA = *this;
+    BigInt tempB = other;
+    tempB.sign = 1;
+    tempA.sign = 1;
 
-    BigInt remainder("0");
-    remainder.base = this->base;
-    BigInt quotient("0");
-    quotient.base = this->base;
-    quotient.blocks.resize(this->blocks.size(), 0);
+    while (tempA >= tempB) {
+        BigInt count("1");
+        BigInt tempOther = tempB;
 
-    quotient.sign = this->sign * other.sign;
-
-    for (int i = this->blocks.size() - 1; i >= 0; --i) {
-        remainder.blocks.insert(remainder.blocks.begin(), this->blocks[i]);
-        remainder.removeLeadingZeros();
-
-        BigInt count("0");
-        count.base = this->base;
-        while (remainder >= divisor) {
-            remainder = remainder - divisor;
-            count = count + BigInt("1");
+        while ((tempOther + tempOther) <= tempA) {
+            tempOther = tempOther + tempOther;
+            count = count + count;
         }
-        quotient.blocks[i] = std::stoi(count.to_string());
+
+        tempA = tempA - tempOther;
+        result = result + count;
     }
 
-    quotient.removeLeadingZeros();
-    return quotient;
+    if (!result.blocks.empty() && result.blocks[0] == 0) {
+        result.sign = 0;
+    } else {
+        result.sign = this->sign * other.sign;
+    }
+    
+    return result;
 }
 
 bool BigInt::operator==(const BigInt& other) const {

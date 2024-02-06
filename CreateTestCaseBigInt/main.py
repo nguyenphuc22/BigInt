@@ -89,7 +89,15 @@ def performOperation(operation, num1, num2):
     elif operation == Mul:
         result = num1 * num2
     elif operation == Div:
-        result = num1 // num2
+        from decimal import Decimal, getcontext
+
+        getcontext().prec = 100  # Set the precision to 100
+
+        num1 = Decimal(str(num1))
+        num2 = Decimal(str(num2))
+
+        result = num1 / num2
+
     elif operation == Mod:
         result = num1 % num2
     elif operation == Pow:

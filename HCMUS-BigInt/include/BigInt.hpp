@@ -31,6 +31,7 @@ private:
     BigInt subtractDifferentSignNumbers(const BigInt& other) const;
     BigInt subtractSameSignNumbers(const BigInt& other) const;
     BigInt multiplySameBasicAlgorithm(const BigInt& other) const;
+    BigInt divideSameBasicAlgorithm(const BigInt& other) const;
 
 public:
     BigInt(const std::string& inputString = "0");
