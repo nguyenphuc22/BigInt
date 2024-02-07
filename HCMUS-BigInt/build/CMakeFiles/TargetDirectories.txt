@@ -1,4 +1,0 @@
-/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/CMakeFiles/HCMUS-BigInt.dir
-/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/CMakeFiles/HCMUS-BigInt-Test.dir
-/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/CMakeFiles/edit_cache.dir
-/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/CMakeFiles/rebuild_cache.dir
