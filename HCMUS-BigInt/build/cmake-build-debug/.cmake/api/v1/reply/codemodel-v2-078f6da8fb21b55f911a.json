@@ -16,7 +16,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
@@ -32,12 +34,28 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BenchMark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BenchMark-Debug-acce417d804b5c52103a.json",
+					"name" : "BenchMark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BenchMark-Test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BenchMark-Test-Debug-c66272464c2b485b7f73.json",
+					"name" : "BenchMark-Test",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "HCMUS-BigInt::@6890427a1f51a3e7e1df",

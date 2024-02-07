@@ -65,6 +65,8 @@ CMAKE_BINARY_DIR = /Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/
 # The main recursive "all" target.
 all: CMakeFiles/HCMUS-BigInt.dir/all
 all: CMakeFiles/HCMUS-BigInt-Test.dir/all
+all: CMakeFiles/BenchMark.dir/all
+all: CMakeFiles/BenchMark-Test.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -74,6 +76,8 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/HCMUS-BigInt.dir/clean
 clean: CMakeFiles/HCMUS-BigInt-Test.dir/clean
+clean: CMakeFiles/BenchMark.dir/clean
+clean: CMakeFiles/BenchMark-Test.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -83,7 +87,7 @@ clean: CMakeFiles/HCMUS-BigInt-Test.dir/clean
 CMakeFiles/HCMUS-BigInt.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt.dir/build.make CMakeFiles/HCMUS-BigInt.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt.dir/build.make CMakeFiles/HCMUS-BigInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target HCMUS-BigInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target HCMUS-BigInt"
 .PHONY : CMakeFiles/HCMUS-BigInt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -109,7 +113,7 @@ CMakeFiles/HCMUS-BigInt.dir/clean:
 CMakeFiles/HCMUS-BigInt-Test.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt-Test.dir/build.make CMakeFiles/HCMUS-BigInt-Test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt-Test.dir/build.make CMakeFiles/HCMUS-BigInt-Test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target HCMUS-BigInt-Test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target HCMUS-BigInt-Test"
 .PHONY : CMakeFiles/HCMUS-BigInt-Test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -127,6 +131,58 @@ HCMUS-BigInt-Test: CMakeFiles/HCMUS-BigInt-Test.dir/rule
 CMakeFiles/HCMUS-BigInt-Test.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt-Test.dir/build.make CMakeFiles/HCMUS-BigInt-Test.dir/clean
 .PHONY : CMakeFiles/HCMUS-BigInt-Test.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/BenchMark.dir
+
+# All Build rule for target.
+CMakeFiles/BenchMark.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BenchMark"
+.PHONY : CMakeFiles/BenchMark.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/BenchMark.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/BenchMark.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/BenchMark.dir/rule
+
+# Convenience name for target.
+BenchMark: CMakeFiles/BenchMark.dir/rule
+.PHONY : BenchMark
+
+# clean rule for target.
+CMakeFiles/BenchMark.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/clean
+.PHONY : CMakeFiles/BenchMark.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/BenchMark-Test.dir
+
+# All Build rule for target.
+CMakeFiles/BenchMark-Test.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target BenchMark-Test"
+.PHONY : CMakeFiles/BenchMark-Test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/BenchMark-Test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/BenchMark-Test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/BenchMark-Test.dir/rule
+
+# Convenience name for target.
+BenchMark-Test: CMakeFiles/BenchMark-Test.dir/rule
+.PHONY : BenchMark-Test
+
+# clean rule for target.
+CMakeFiles/BenchMark-Test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/clean
+.PHONY : CMakeFiles/BenchMark-Test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -142,6 +142,80 @@ HCMUS-BigInt-Test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HCMUS-BigInt-Test.dir/build.make CMakeFiles/HCMUS-BigInt-Test.dir/build
 .PHONY : HCMUS-BigInt-Test/fast
 
+#=============================================================================
+# Target rules for targets named BenchMark
+
+# Build rule for target.
+BenchMark: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 BenchMark
+.PHONY : BenchMark
+
+# fast build rule for target.
+BenchMark/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/build
+.PHONY : BenchMark/fast
+
+#=============================================================================
+# Target rules for targets named BenchMark-Test
+
+# Build rule for target.
+BenchMark-Test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 BenchMark-Test
+.PHONY : BenchMark-Test
+
+# fast build rule for target.
+BenchMark-Test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/build
+.PHONY : BenchMark-Test/fast
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.o: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.o
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.o
+
+# target to build an object file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.o
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.o
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.i: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.i
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.i
+
+# target to preprocess a source file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.i
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.i
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.s: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.s
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.s
+
+# target to generate assembly for a file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark.dir/build.make CMakeFiles/BenchMark.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.s
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp.s
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.o: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.o
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.o
+
+# target to build an object file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.o
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.o
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.i: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.i
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.i
+
+# target to preprocess a source file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.i
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.i
+
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.s: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.s
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.s
+
+# target to generate assembly for a file
+Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BenchMark-Test.dir/build.make CMakeFiles/BenchMark-Test.dir/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.s
+.PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp.s
+
 Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.o: Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.cpp.o
 .PHONY : Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.o
 
@@ -198,8 +272,16 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... BenchMark"
+	@echo "... BenchMark-Test"
 	@echo "... HCMUS-BigInt"
 	@echo "... HCMUS-BigInt-Test"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.o"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.i"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.s"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.o"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.i"
+	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.s"
 	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.o"
 	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.i"
 	@echo "... Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.s"
