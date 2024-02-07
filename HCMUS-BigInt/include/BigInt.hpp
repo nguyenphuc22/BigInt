@@ -24,11 +24,14 @@ private:
 
     // Có thể thêm các phương thức trợ giúp khác nếu cần
     bool isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const;
+    bool isGreaterOrEqual(const BigInt& other) const;
     void removeLeadingZeros();
     BigInt addSameSignNumbers(const BigInt& other) const;
     BigInt addDifferentSignNumbers(const BigInt& other) const;
     BigInt subtractDifferentSignNumbers(const BigInt& other) const;
     BigInt subtractSameSignNumbers(const BigInt& other) const;
+    BigInt multiplySameBasicAlgorithm(const BigInt& other) const;
+    BigInt divideSameBasicAlgorithm(const BigInt& other) const;
 
 public:
     BigInt(const std::string& inputString = "0");

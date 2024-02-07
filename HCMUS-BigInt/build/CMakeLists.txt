@@ -18,3 +18,11 @@ add_executable(HCMUS-BigInt ${SOURCES})
 
 # Tạo một target thực thi từ các file nguồn
 add_executable(HCMUS-BigInt-Test ${TEST_SOURCES})
+
+add_executable(BenchMark
+        ../benchmark/cplusplus/BenchMark.cpp
+)
+
+add_executable(BenchMark-Test
+        ../benchmark/cplusplus/HelloWorld.cpp
+)

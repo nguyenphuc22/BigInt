@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="HCMUS-BigInt"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HCMUS-BigInt">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/HCMUS-BigInt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 HCMUS-BigInt"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HCMUS-BigInt/fast">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/HCMUS-BigInt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 HCMUS-BigInt/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HCMUS-BigInt-Test">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/HCMUS-BigInt-Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 HCMUS-BigInt-Test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HCMUS-BigInt-Test/fast">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/HCMUS-BigInt-Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 HCMUS-BigInt-Test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BenchMark">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/BenchMark" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 BenchMark"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BenchMark/fast">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/BenchMark" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 BenchMark/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BenchMark-Test">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/BenchMark-Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 BenchMark-Test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BenchMark-Test/fast">
+				<Option output="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/BenchMark-Test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 BenchMark-Test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/BenchMark.cpp">
+			<Option target="BenchMark"/>
+		</Unit>
+		<Unit filename="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/benchmark/cplusplus/HelloWorld.cpp">
+			<Option target="BenchMark-Test"/>
+		</Unit>
+		<Unit filename="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/src/main.cpp">
+			<Option target="HCMUS-BigInt"/>
+		</Unit>
+		<Unit filename="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/tests/testCase.cpp">
+			<Option target="HCMUS-BigInt-Test"/>
+		</Unit>
+		<Unit filename="/Users/phucnguyen/Documents/GitHub/HCMUS-BigInt/HCMUS-BigInt/build/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

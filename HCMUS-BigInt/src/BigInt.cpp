@@ -231,8 +231,61 @@ bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
-    // Triển khai phép nhân tại đây
-    return BigInt();  // Kết quả tạm thời
+    return this->multiplySameBasicAlgorithm(other);
+}
+
+// Phương thức nhân cơ bản
+BigInt BigInt::multiplySameBasicAlgorithm(const BigInt& other) const {
+    if (this->blocks.size() == 1 && this->blocks[0] == 0) {
+        return BigInt("0");
+    }
+
+    if (other.blocks.size() == 1 && other.blocks[0] == 0) {
+        return BigInt("0");
+    }
+
+    BigInt result;
+
+
+    // Tính toán kích thước của vector kết quả
+    // Kích thước của vector kết quả sẽ là tổng của kích thước của 2 vector gốc
+    // Ví dụ: 123 * 1234
+    // Kích thước của vector kết quả sẽ là 3 + 4 = 7
+    result.blocks.resize(this->blocks.size() + other.blocks.size(), 0);
+
+    for (size_t i = 0; i < this->blocks.size(); ++i) {
+        int carry = 0;
+        for (size_t j = 0; j < other.blocks.size() || carry > 0; ++j) {
+            long long block_one = this->blocks[i]; // Ép kiểu block[i] thành long long
+
+            // Kiểm tra null safety cho other.blocks
+            long long block_two = 0;
+            if (j < other.blocks.size()) {
+                block_two = other.blocks[j];
+            }
+
+            // Tính toán giá trị hiện tại
+            long long currentSum = result.blocks[i + j] + ((block_one * block_two) + carry);
+
+            // Tách giả trị tổng thành phần dư và nguyên
+            // Phần dư sẽ là giá trị của block hiện tại
+            // Ví dụ: currentSum 1234567
+            // Phần dư: 234567
+            result.blocks[i + j] = int(currentSum % base);
+
+            // Phần nguyên sẽ là giá trị của carry
+            // Ví dụ: currentSum 1234567
+            // Phần nguyên: 1
+            carry = int(currentSum / base);
+        }
+    }
+
+    // Gán dấu cho kết quả
+    result.sign = this->sign * other.sign;
+
+    // Xóa các số 0 không cần thiết ở cuối
+    result.removeLeadingZeros();
+    return result;
 }
 
 void BigInt::removeLeadingZeros() {
@@ -242,8 +295,51 @@ void BigInt::removeLeadingZeros() {
 }
 
 
+// Phép chia cho BigInt
 BigInt BigInt::operator/(const BigInt& other) const {
-    return BigInt();  // Kết quả tạm thời
+    // Triển khai phép chia tại đây
+    return this->divideSameBasicAlgorithm(other);  // Kết quả tạm thời
+}
+
+// Thuật toán mượn ý tưởng từ Long division
+// https://en.wikipedia.org/wiki/Division_algorithm
+// https://en.wikipedia.org/wiki/Long_division#Algorithm_for_arbitrary_base
+BigInt BigInt::divideSameBasicAlgorithm(const BigInt &other) const {
+    if (other == BigInt("0")) {
+        throw std::invalid_argument("Division by zero is not allowed.");
+    }
+
+    BigInt result("0");
+    // Chuẩn hóa dấu
+    BigInt tempA = *this;
+    BigInt tempB = other;
+    tempB.sign = 1;
+    tempA.sign = 1;
+
+
+    while (tempA >= tempB) {
+        BigInt count("1");
+        BigInt tempOther = tempB;
+
+        // Tìm số lần số chia "vừa vặn" với số bị chia
+        // Nhân số chia với 2 cho đến khi nào lớn hơn số bị chia ( Muốn nhân 3 cũng được, miễn sau giảm lần lập lại)
+        // Tui thì đặt nhân 2 bởi vì tui thích :))
+        while ((tempOther + tempOther) <= tempA) {
+            tempOther = tempOther + tempOther;
+            count = count + count;
+        }
+
+        tempA = tempA - tempOther;
+        result = result + count;
+    }
+
+    if (!result.blocks.empty() && result.blocks[0] == 0) {
+        result.sign = 0;
+    } else {
+        result.sign = this->sign * other.sign;
+    }
+    
+    return result;
 }
 
 bool BigInt::operator==(const BigInt& other) const {
