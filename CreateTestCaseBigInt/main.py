@@ -38,7 +38,10 @@ def randomBigInt(operation, range=10**64):
     if operation == Pow:
         return random.randint(2, 10**3)  # Adjust this range as needed for Pow operation
     else:
-        return random.randint(-range, range)
+        if operation == Mod:
+            return random.randint(1, range)
+        else:
+            return random.randint(-range, range)
 
 def getFileName(operation):
     if operation == Add:

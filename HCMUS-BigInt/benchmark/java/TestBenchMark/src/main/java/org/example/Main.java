@@ -8,7 +8,7 @@ public class Main {
 
         FileReader fileReader = new FileReader();
 
-        List<String> lines = fileReader.readFile("../../../../CreateTestCaseBigInt/data/div.txt");
+        List<String> lines = fileReader.readFile("../../../../CreateTestCaseBigInt/data/mod.txt");
 
         ArrayList<Calculation> calculations = new ArrayList<>();
 

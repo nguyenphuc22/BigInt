@@ -38,6 +38,8 @@ public class Calculation {
                 return firstNumber.multiply(secondNumber);
             case 4:
                 return firstNumber.divide(secondNumber);
+            case 5:
+                return firstNumber.mod(secondNumber);
             default:
                 throw new IllegalArgumentException("Unknown operation: " + operation);
         }
@@ -61,6 +63,8 @@ public class Calculation {
                 return "*";
             case 4:
                 return "/";
+            case 5:
+                return "%";
             default:
                 throw new IllegalArgumentException("Unknown operation: " + operation);
         }
