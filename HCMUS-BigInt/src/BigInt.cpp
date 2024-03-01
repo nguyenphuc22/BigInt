@@ -401,6 +401,7 @@ BigInt BigInt::operator^(const BigInt& power) const {
     return this->fastPow(power);
 }
 
+// Thuật toán được implement theo ý tưởng của link sau https://www.programminglogic.com/fast-exponentiation-algorithms/
 BigInt BigInt::fastPow(const BigInt& power) const {
     if (power < BigInt("0")) {
         throw std::invalid_argument("Negative exponents are not supported.");
@@ -415,6 +416,7 @@ BigInt BigInt::fastPow(const BigInt& power) const {
             result = result * base;
         }
         base = base * base;
+        // Dịch bit sang phải đồng nghĩa với phép chia / 2
         exponent = exponent / BigInt("2");
     }
 
