@@ -92,7 +92,7 @@ public:
             case 5:
                 return firstNumber % secondNumber;
             case 6:
-                return firstNumber.pow(secondNumber);
+                return firstNumber ^ secondNumber;
             default:
                 return BigInt("0");
         }

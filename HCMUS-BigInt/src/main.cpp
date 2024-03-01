@@ -23,7 +23,7 @@ int main() {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
 
-    std::cout << (a.pow(b)).to_string() << std::endl;
+    std::cout << (a ^ b).to_string() << std::endl;
 
     return 0;
 }
