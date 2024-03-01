@@ -2,29 +2,44 @@ import time
 from Operation import Operation
 
 def benchmark():
-    # Read input from file
-    with open("../../../CreateTestCaseBigInt/data/mod.txt", 'r') as file:
-        lines = file.readlines()
+    paths = ["../../../CreateTestCaseBigInt/data/mod.txt",
+             "../../../CreateTestCaseBigInt/data/mul.txt",
+             "../../../CreateTestCaseBigInt/data/sub.txt",
+             "../../../CreateTestCaseBigInt/data/div.txt",
+             "../../../CreateTestCaseBigInt/data/add.txt",
+             "../../../CreateTestCaseBigInt/data/pow.txt"]
 
-    # Parse lines into operations
-    operations = [Operation(line) for line in lines]
+    for path in paths:
+        print(f"Executing operations from {path}")
+        # Read input from file
+        with open(path, 'r') as file:
+            lines = file.readlines()
 
-    total_elapsed = 0
+        # Parse lines into operations
+        operations = [Operation(line) for line in lines]
 
-    # Execute operations
-    for operation in operations:
-        start_time = time.time()
-        result = operation.execute()
-        end_time = time.time()
+        total_elapsed = 0
 
-        print(f"${operation.line} \nResult: {result}")
-        print()
+        # Execute operations
+        for operation in operations:
+            start_time = time.time()
+            result = operation.execute()
+            end_time = time.time()
 
-        # Calculate elapsed time
-        elapsed_time = (end_time - start_time) * 1000000  # Convert to microseconds
-        total_elapsed += elapsed_time
+            if operation.result != result:
+                print(f"Operation {operation.line} failed")
+                print(f"Expected: {operation.result}, got: {result}")
+                print()
+                return
 
-    print(f"Total time elapsed: {total_elapsed} microseconds")
+            # print(f"${operation.line} \nResult: {result}")
+            # print()
+
+            # Calculate elapsed time
+            elapsed_time = (end_time - start_time) * 1000000  # Convert to microseconds
+            total_elapsed += elapsed_time
+
+        print(f"Total time elapsed: {total_elapsed} microseconds")
 
 if __name__ == "__main__":
     benchmark()
