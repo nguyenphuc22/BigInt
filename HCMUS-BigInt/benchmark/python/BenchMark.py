@@ -2,12 +2,14 @@ import time
 from Operation import Operation
 
 def benchmark():
-    paths = ["../../../CreateTestCaseBigInt/data/mod.txt",
-             "../../../CreateTestCaseBigInt/data/mul.txt",
-             "../../../CreateTestCaseBigInt/data/sub.txt",
-             "../../../CreateTestCaseBigInt/data/div.txt",
+    paths = [
              "../../../CreateTestCaseBigInt/data/add.txt",
-             "../../../CreateTestCaseBigInt/data/pow.txt"]
+             # "../../../CreateTestCaseBigInt/data/mod.txt",
+             # "../../../CreateTestCaseBigInt/data/mul.txt",
+             # "../../../CreateTestCaseBigInt/data/sub.txt",
+             # "../../../CreateTestCaseBigInt/data/div.txt",
+             # "../../../CreateTestCaseBigInt/data/pow.txt"
+    ]
 
     for path in paths:
         print(f"Executing operations from {path}")

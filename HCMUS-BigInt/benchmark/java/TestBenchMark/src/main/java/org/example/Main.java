@@ -8,10 +8,10 @@ public class Main {
 
 
         List<String> paths = new ArrayList<String>();
-//        paths.add("../../../../CreateTestCaseBigInt/data/add.txt");
+        paths.add("../../../../CreateTestCaseBigInt/data/add.txt");
 //        paths.add("../../../../CreateTestCaseBigInt/data/sub.txt");
 //        paths.add("../../../../CreateTestCaseBigInt/data/mul.txt");
-        paths.add("../../../../CreateTestCaseBigInt/data/div.txt");
+//        paths.add("../../../../CreateTestCaseBigInt/data/div.txt");
 //        paths.add("../../../../CreateTestCaseBigInt/data/mod.txt");
 //        paths.add("../../../../CreateTestCaseBigInt/data/pow.txt");
 

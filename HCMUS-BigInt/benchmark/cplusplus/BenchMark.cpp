@@ -11,10 +11,10 @@
 int main(int argc, char* argv[]) {
     // list paths
     std::vector<std::string> paths;
-//    paths.push_back("../../../CreateTestCaseBigInt/data/add.txt");
+    paths.push_back("../../../CreateTestCaseBigInt/data/add.txt");
 //    paths.push_back("../../../CreateTestCaseBigInt/data/sub.txt");
 //    paths.push_back("../../../CreateTestCaseBigInt/data/mul.txt");
-    paths.push_back("../../../CreateTestCaseBigInt/data/div.txt");
+//    paths.push_back("../../../CreateTestCaseBigInt/data/div.txt");
 //    paths.push_back("../../../CreateTestCaseBigInt/data/mod.txt");
 //    paths.push_back("../../../CreateTestCaseBigInt/data/pow.txt");
 
