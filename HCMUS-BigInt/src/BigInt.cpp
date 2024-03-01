@@ -399,8 +399,27 @@ BigInt BigInt::moduloSameBasicAlgorithm(const BigInt &other) const {
 
 // Phương thức lũy thừa
 BigInt BigInt::pow(const BigInt& power) const {
-    // Triển khai phương thức lũy thừa tại đây
-    return BigInt();  // Kết quả tạm thời
+    if (power < BigInt("0")) {
+        throw std::invalid_argument("Negative exponents are not supported.");
+    }
+
+    return fastPow(power);
+}
+
+BigInt BigInt::fastPow(const BigInt& power) const {
+    BigInt result("1");
+    BigInt base = *this;
+    BigInt exponent = power;
+
+    while (exponent > BigInt("0")) {
+        if (exponent % BigInt("2") == BigInt("1")) {
+            result = result * base;
+        }
+        base = base * base;
+        exponent = exponent / BigInt("2");
+    }
+
+    return result;
 }
 
 // Ghi dữ liệu ra ostream

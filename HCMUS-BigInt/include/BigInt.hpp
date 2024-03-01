@@ -33,6 +33,7 @@ private:
     BigInt multiplySameBasicAlgorithm(const BigInt& other) const;
     BigInt divideSameBasicAlgorithm(const BigInt& other) const;
     BigInt moduloSameBasicAlgorithm(const BigInt& other) const;
+    BigInt fastPow(const BigInt& power) const;
 
 public:
     BigInt(const std::string& inputString = "0");
