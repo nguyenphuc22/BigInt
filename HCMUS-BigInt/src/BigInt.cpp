@@ -382,8 +382,19 @@ bool BigInt::operator>=(const BigInt& other) const {
 
 // Toán tử chia lấy dư
 BigInt BigInt::operator%(const BigInt& other) const {
-    // Triển khai phép chia lấy dư tại đây
-    return BigInt();  // Kết quả tạm thời
+    return this->moduloSameBasicAlgorithm(other);
+}
+
+BigInt BigInt::moduloSameBasicAlgorithm(const BigInt &other) const {
+    if (other == BigInt("0")) {
+        throw std::invalid_argument("Division by zero is not allowed.");
+    }
+
+    BigInt quotient = *this / other;
+    BigInt product = quotient * other;
+    BigInt remainder = *this - product;
+
+    return remainder;
 }
 
 // Phương thức lũy thừa
