@@ -20,6 +20,7 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
         return result;
     }
 
+
     int startIndex = (inputString[0] == '-') ? 1 : 0;
 
     int block = 0;
@@ -50,6 +51,7 @@ std::vector<int> BigInt::from_string(const std::string& inputString) {
     return result;
 }
 
+
 // Constructor
 BigInt::BigInt(const std::string& inputString) {
     base = 1000000;  // 10^6
@@ -70,6 +72,9 @@ BigInt::BigInt(const std::string& inputString) {
     // Chuyển đổi chuỗi thành khối số nguyên (blocks)
     blocks = from_string(inputString);
 }
+
+
+// ================================================= Addition ========================================================================================== //
 
 // Check if BigInt is zero
 bool BigInt::isZero() const {
@@ -150,6 +155,16 @@ BigInt BigInt::operator+(const BigInt& other) const {
     return result;
 }
 
+
+
+
+// =========================================================================================================================================== //
+
+
+
+// ------------------------------------------ Subtraction ---------------------------------------------------------------------- //
+
+
 // Overload unary minus to simplify negation
 BigInt BigInt::operator-() const {
     BigInt result = *this;
@@ -206,6 +221,11 @@ BigInt BigInt::operator-(const BigInt& other) const {
     return result;
 }
 
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
 // Hàm so sánh độ lớn
 bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
     // So sánh độ dài của vector
@@ -220,6 +240,12 @@ bool BigInt::isFirstLargerThanSecond(const BigInt& a, const BigInt& b) const {
     }
     return false;  // Hai số bằng nhau
 }
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// ------------------------------------ Multiplication ---------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
 
 // Toán tử nhân
 BigInt BigInt::operator*(const BigInt& other) const {
@@ -280,6 +306,111 @@ BigInt BigInt::multiplySameBasicAlgorithm(const BigInt& other) const {
     return result;
 }
 
+
+
+// bool BigInt::isSmall() const {
+//     // Assuming base is 10^6 and each block represents a part of the number
+//     // A BigInt is considered small if it has only one block and that block is less than the base
+//     if (blocks.size() == 1 && abs(blocks[0]) < base) {
+//         return true;
+//     }
+//     return false;
+// }
+
+// // Helper methods not fully implemented for brevity
+// BigInt BigInt::getHighPart(size_t m2) const {
+//     // Calculate the number of blocks corresponding to m2 digits
+//     size_t numBlocks = m2 / std::log10(base);
+//     if (numBlocks >= blocks.size()) return BigInt("0"); // High part is 0 if m2 exceeds or equals the size
+
+//     vector<int> highPartBlocks(blocks.end() - numBlocks, blocks.end());
+//     return BigInt(highPartBlocks, sign);
+// }
+
+// BigInt BigInt::getLowPart(size_t m2) const {
+//     size_t numBlocks = m2 / std::log10(base);
+//     vector<int> lowPartBlocks(blocks.begin(), blocks.size() > numBlocks ? blocks.end() - numBlocks : blocks.end());
+//     return BigInt(lowPartBlocks, sign);
+// }
+
+// BigInt BigInt::shiftLeft(size_t m) const {
+//     // m is the number of digits to shift by, so convert that to the number of blocks
+//     size_t numBlocks = m / std::log10(base);
+//     std::vector<int> shiftedBlocks = blocks;
+//     for (size_t i = 0; i < numBlocks; ++i) {
+//         shiftedBlocks.insert(shiftedBlocks.begin(), 0); // Insert zeros at the beginning
+//     }
+//     return BigInt(shiftedBlocks, sign);
+// }
+
+// BigInt BigInt::simpleMultiply(const BigInt& a, const BigInt& b) const {
+//     BigInt product;
+//     product.sign = a.sign * b.sign;
+//     product.blocks.resize(a.blocks.size() + b.blocks.size(), 0);
+
+//     for (size_t i = 0; i < a.blocks.size(); ++i) {
+//         long long carry = 0;
+//         for (size_t j = 0; j < b.blocks.size() || carry; ++j) {
+//             long long sum = product.blocks[i + j] + carry + 
+//                             a.blocks[i] * (j < b.blocks.size() ? b.blocks[j] : 0);
+//             product.blocks[i + j] = sum % base;
+//             carry = sum / base;
+//         }
+//     }
+
+//     product.removeLeadingZeros();
+//     return product;
+// }
+
+// BigInt BigInt::karatsubaMultiply(const BigInt& x, const BigInt& y) const {
+//     // Base case: if one of the numbers is small, use simple multiplication
+//     if (x.isSmall() || y.isSmall()) {
+//         return simpleMultiply(x, y);
+//     }
+
+//     size_t m = std::max(x.blocks.size(), y.blocks.size()) / 2; // Split position
+
+//     // Splitting x and y
+//     BigInt high1 = x.getHighPart(m);
+//     BigInt low1 = x.getLowPart(m);
+//     BigInt high2 = y.getHighPart(m);
+//     BigInt low2 = y.getLowPart(m);
+
+//     // Recursive steps
+//     BigInt z0 = karatsubaMultiply(low1, low2); // bd
+//     BigInt z1 = karatsubaMultiply(low1 + high1, low2 + high2); // (a+b)(c+d)
+//     BigInt z2 = karatsubaMultiply(high1, high2); // ac
+
+//     // Combine the results: 10^(2*m)*z2 + 10^m*(z1 - z2 - z0) + z0
+//     BigInt result = z2.shiftLeft(2 * m) + ((z1 - z2 - z0).shiftLeft(m)) + z0;
+
+//     result.sign = x.sign * y.sign; // Set the correct sign
+//     result.removeLeadingZeros(); // Remove any leading zeros
+//     return result;
+// }
+
+// BigInt BigInt::operator*(const BigInt& other) const {
+//     // Check for zero multiplication
+//     if (this->isZero() || other.isZero()) {
+//         return BigInt("0");
+//     }
+
+//     // Optimize multiplication for small numbers
+//     if (this->blocks.size() == 1 && other.blocks.size() == 1) {
+//         return this->simpleMultiply(*this, other);
+//     }
+
+//     // Use Karatsuba algorithm for larger numbers
+//     return this->karatsubaMultiply(*this, other);
+// }
+
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
 void BigInt::removeLeadingZeros() {
     while (!blocks.empty() && blocks.back() == 0) {
         blocks.pop_back();
@@ -288,6 +419,12 @@ void BigInt::removeLeadingZeros() {
         sign = 0; // Adjust sign for zero
     }
 }
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// ------------------------------------------ division ---------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
 
 // Phép chia cho BigInt
 BigInt BigInt::operator/(const BigInt& other) const {
@@ -336,6 +473,71 @@ BigInt BigInt::divideSameBasicAlgorithm(const BigInt &other) const {
     return result;
 }
 
+
+
+// void BigInt::removeLeadingZeros4divice() {
+//     while (!blocks.empty() && blocks.back() == 0) {
+//         blocks.pop_back();
+//     }
+//     if (blocks.empty()) {
+//         // Adjust sign for zero
+//         sign = 1; // Zero is not negative.
+//         blocks.push_back(0); // Ensure there's a zero in the blocks for a BigInt representing 0
+//     }
+// }
+
+// BigInt BigInt::operator/(const BigInt& divisor) const {
+//     if (divisor.isZero()) {
+//         throw std::invalid_argument("Division by zero.");
+//     }
+
+//     if (this->isZero() || *this < divisor) {
+//         return BigInt("0"); // Result is 0 if dividend is 0 or less than divisor
+//     }
+
+//     BigInt dividend = *this;
+//     BigInt quotient;
+//     quotient.blocks.clear(); // Ensure quotient starts empty
+//     quotient.sign = (this->sign == divisor.sign) ? 1 : -1; // Determine sign of the quotient
+
+//     BigInt curr;
+//     int currPosition = 0;
+
+//     // Start from the most significant part of the dividend
+//     for (int i = dividend.blocks.size() - 1; i >= 0; --i) {
+//         // // Shift current number left by base and add the new digit
+//         // curr = curr * base + BigInt(std::to_string(dividend.blocks[i]));
+//         curr = curr * BigInt(std::to_string(base)) + BigInt(std::to_string(dividend.blocks[i]));
+
+//         curr.removeLeadingZeros4divice();
+
+//         int count = 0;
+//         // Subtract divisor from current number until it's smaller than divisor
+//         while (curr >= divisor) {
+//             curr = curr - divisor;
+//             ++count;
+//         }
+
+//         // Insert count into the correct position of the result
+//         if (currPosition < quotient.blocks.size()) {
+//             quotient.blocks[quotient.blocks.size() - 1 - currPosition] = count;
+//         } else {
+//             quotient.blocks.insert(quotient.blocks.begin(), count);
+//         }
+//         ++currPosition;
+//     }
+
+//     quotient.removeLeadingZeros4divice();
+//     return quotient;
+    
+// }
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
 bool BigInt::operator==(const BigInt& other) const {
     return sign == other.sign && blocks == other.blocks;
 }
@@ -374,6 +576,19 @@ bool BigInt::operator>=(const BigInt& other) const {
     return !(*this < other);
 }
 
+
+// BigInt& operator+=(const BigInt& other) {
+//     // Implement addition logic here
+//     *this = *this + other; // Use the already defined operator+
+//     return *this;
+// }
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// -------------------------------------------- Modulus -------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
 // Static function definition
 // Returns the absolute value of a BigInt.
 BigInt BigInt::abs(const BigInt& num) {
@@ -383,6 +598,37 @@ BigInt BigInt::abs(const BigInt& num) {
     // result.sign = (result.sign != 1) ? 0 : result.sign; // Adjust sign to positive, except for zero
     return result;
 }
+
+// BigInt BigInt::operator%(const BigInt& divisor) const {
+//     if (divisor == BigInt("0")) {
+//         throw std::invalid_argument("Modulus by zero is undefined.");
+//     }
+
+//     // Directly return zero for these special cases
+//     if (*this == BigInt("0") || divisor == BigInt("1") || divisor == BigInt("-1")) {
+//         return BigInt("0");
+//     }
+
+//     // Calculate the remainder: remainder = dividend - (quotient * divisor)
+//     BigInt remainder = *this - ((*this / divisor) * divisor);
+
+//     // Adjust the sign of the remainder to match the dividend
+//     // If the remainder is negative and the divisor is positive, adjust the remainder
+//     if (remainder.sign < 0 && divisor.sign > 0) {
+//         remainder = remainder + BigInt::abs(divisor);
+//     }
+
+//     // // Ensure the remainder's sign matches the dividend's
+//     // remainder.sign = this->sign;
+
+//     // Normalize zero remainder to have zero sign
+//     if (remainder.isZero()) {
+//         remainder.sign = 0;
+//     }
+
+//     return remainder;
+// }
+
 
 BigInt BigInt::operator%(const BigInt& divisor) const {
     if (divisor == BigInt("0")) {
@@ -401,10 +647,12 @@ BigInt BigInt::operator%(const BigInt& divisor) const {
     // Adjust the remainder for negative dividends to ensure it has the same sign as the divisor
     // or is zero. This adjustment is necessary when the remainder is negative, and the divisor is positive.
     if (remainder.sign < 0 && divisor.sign > 0) {
+        // remainder += BigInt::abs(divisor);
         remainder = remainder + BigInt::abs(divisor);
     }
     // Similarly, adjust when remainder is positive but the divisor is negative.
     else if (remainder.sign > 0 && divisor.sign < 0) {
+        // remainder -= BigInt::abs(divisor);
         remainder = remainder - BigInt::abs(divisor);
     }
 
@@ -415,6 +663,13 @@ BigInt BigInt::operator%(const BigInt& divisor) const {
 
     return remainder;
 }
+
+
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
 
 // Phương thức lũy thừa
 BigInt BigInt::pow(const BigInt& power) const {
