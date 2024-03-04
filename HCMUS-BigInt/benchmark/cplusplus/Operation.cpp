@@ -91,8 +91,8 @@ public:
                 return firstNumber / secondNumber;
             case 5:
                 return firstNumber % secondNumber;
-            case 6:
-                return firstNumber.pow(secondNumber);
+            // case 6:
+            //     return firstNumber ^ secondNumber;
             default:
                 return BigInt("0");
         }
