@@ -38,7 +38,10 @@ def randomBigInt(operation, range=10**64):
     if operation == Pow:
         return random.randint(2, 10**3)  # Adjust this range as needed for Pow operation
     else:
-        return random.randint(-range, range)
+        if operation == Mod:
+            return random.randint(1, range)
+        else:
+            return random.randint(-range, range)
 
 def getFileName(operation):
     if operation == Add:
@@ -89,7 +92,15 @@ def performOperation(operation, num1, num2):
     elif operation == Mul:
         result = num1 * num2
     elif operation == Div:
+        from decimal import Decimal, getcontext
+
+        getcontext().prec = 100  # Set the precision to 100
+
+        num1 = Decimal(str(num1))
+        num2 = Decimal(str(num2))
+
         result = num1 / num2
+
     elif operation == Mod:
         result = num1 % num2
     elif operation == Pow:
@@ -177,15 +188,3 @@ if __name__ == '__main__':
     createFileTestCaseBigIntCompare(1000,LargerThanEqual)
     createFileTestCaseBigIntCompare(1000,other)
     print_hi('PyCharm')
-    
-
-
-
-
-# ./HCMUS-BigInt-Test ../../CreateTestCaseBigInt/data/sub.txt
-# ./HCMUS-BigInt ../../CreateTestCaseBigInt/data/sub.txt
-# ./HCMUS-BigInt-Test /home/nguyenthanhphong/HCMUS-BigInt-main/CreateTestCaseBigInt/data/sub.txt
-
-
-
-

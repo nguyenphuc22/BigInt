@@ -401,12 +401,10 @@ BigInt BigInt::operator%(const BigInt& divisor) const {
     // Adjust the remainder for negative dividends to ensure it has the same sign as the divisor
     // or is zero. This adjustment is necessary when the remainder is negative, and the divisor is positive.
     if (remainder.sign < 0 && divisor.sign > 0) {
-        // remainder += BigInt::abs(divisor);
         remainder = remainder + BigInt::abs(divisor);
     }
     // Similarly, adjust when remainder is positive but the divisor is negative.
     else if (remainder.sign > 0 && divisor.sign < 0) {
-        // remainder -= BigInt::abs(divisor);
         remainder = remainder - BigInt::abs(divisor);
     }
 
