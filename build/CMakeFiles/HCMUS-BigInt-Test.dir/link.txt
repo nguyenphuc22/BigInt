@@ -1,1 +1,0 @@
-/usr/bin/c++ -g "CMakeFiles/HCMUS-BigInt-Test.dir/home/nguyenthanhphong/HCMUS-BigInt-main/HCMUS-BigInt/tests/testCase.cpp.o" -o HCMUS-BigInt-Test 

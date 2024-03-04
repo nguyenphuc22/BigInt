@@ -1,4 +1,0 @@
-/home/nguyenthanhphong/HCMUS-BigInt-main/build/CMakeFiles/HCMUS-BigInt.dir
-/home/nguyenthanhphong/HCMUS-BigInt-main/build/CMakeFiles/HCMUS-BigInt-Test.dir
-/home/nguyenthanhphong/HCMUS-BigInt-main/build/CMakeFiles/edit_cache.dir
-/home/nguyenthanhphong/HCMUS-BigInt-main/build/CMakeFiles/rebuild_cache.dir
