@@ -11,19 +11,10 @@
 #include "BigInt.cpp"
 #include <string>
 
-
-
-
 int main() {
     // // Testing the BigInt class
     // std::string numberA = "-1234567899999999999999999999999999999999999999";
     // std::string numberB = "987654321";
-
-    // std::string numberA = "-23";
-    // std::string numberB = "-8";
-
-    // std::string numberA = "25";
-    // std::string numberB = "5";
 
     std::string numberA = "-321951297601675515252227491198117788783175472632709509415199737";
     std::string numberB = "-7125621409543227992459498260887594782257886371717132382511361239";
@@ -48,4 +39,32 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
