@@ -40,6 +40,8 @@ public class Calculation {
                 return firstNumber.divide(secondNumber);
             case 5:
                 return firstNumber.mod(secondNumber);
+            case 6:
+                return firstNumber.pow(secondNumber.intValue());
             default:
                 throw new IllegalArgumentException("Unknown operation: " + operation);
         }

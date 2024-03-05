@@ -382,14 +382,45 @@ bool BigInt::operator>=(const BigInt& other) const {
 
 // Toán tử chia lấy dư
 BigInt BigInt::operator%(const BigInt& other) const {
-    // Triển khai phép chia lấy dư tại đây
-    return BigInt();  // Kết quả tạm thời
+    return this->moduloSameBasicAlgorithm(other);
 }
 
-// Phương thức lũy thừa
-BigInt BigInt::pow(const BigInt& power) const {
-    // Triển khai phương thức lũy thừa tại đây
-    return BigInt();  // Kết quả tạm thời
+BigInt BigInt::moduloSameBasicAlgorithm(const BigInt &other) const {
+    if (other == BigInt("0")) {
+        throw std::invalid_argument("Division by zero is not allowed.");
+    }
+
+    BigInt quotient = *this / other;
+    BigInt product = quotient * other;
+    BigInt remainder = *this - product;
+
+    return remainder;
+}
+
+BigInt BigInt::operator^(const BigInt& power) const {
+    return this->fastPow(power);
+}
+
+// Thuật toán được implement theo ý tưởng của link sau https://www.programminglogic.com/fast-exponentiation-algorithms/
+BigInt BigInt::fastPow(const BigInt& power) const {
+    if (power < BigInt("0")) {
+        throw std::invalid_argument("Negative exponents are not supported.");
+    }
+
+    BigInt result("1");
+    BigInt base = *this;
+    BigInt exponent = power;
+
+    while (exponent > BigInt("0")) {
+        if (exponent % BigInt("2") == BigInt("1")) {
+            result = result * base;
+        }
+        base = base * base;
+        // Dịch bit sang phải đồng nghĩa với phép chia / 2
+        exponent = exponent / BigInt("2");
+    }
+
+    return result;
 }
 
 // Ghi dữ liệu ra ostream
@@ -430,4 +461,3 @@ std::string BigInt::to_string() const {
 
 
 
-// Các phương thức trợ giúp khác có thể được thêm vào tại đây

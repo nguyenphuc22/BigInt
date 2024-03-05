@@ -27,7 +27,7 @@ std::string cal(BigInt a, BigInt b, int op) {
     case 5:
         return (a % b).to_string();
     case 6:
-        return (a.pow(b)).to_string();
+        return (a ^ b).to_string();
     default:
         return "0";
     }
