@@ -1,4 +1,4 @@
-# HCMUS - BigInt
+# BigInt
 
 ## **Mục Tiêu:** 
 
